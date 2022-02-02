@@ -9,11 +9,9 @@ OBJ =	${SRC:.c=.o}
 all:	${NAME}
 
 %.o:	%.c
-		${CC} ${FLAGS} -c $< -o $@
-
+		$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 ${NAME}:	${OBJ}
-			${AR} ${NAME} ${OBJ}
-
+		$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 clean:
 			rm -rf *.o
 
