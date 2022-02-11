@@ -1,19 +1,18 @@
 CC =	CC
 FLAGS =	-Werror -Wextra -Wall
-NAME =	so_long.a
+NAME =	so_long
 AR =	ar rcs
-SRC =	#liste des fichiers \
-		# a inclure ici
+SRC =	so_long.c
 OBJ =	${SRC:.c=.o}
 
 all:	${NAME}
 
 %.o:	%.c
-		$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+		${CC} ${FLAGS} -Imlx -c $< -o $@
 ${NAME}:	${OBJ}
-		$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+		${CC} ${OBJ} -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
 clean:
-			rm -rf *.o
+			rm -rf ${OBJ}
 
 fclean:		clean
 			rm -rf ${NAME}
