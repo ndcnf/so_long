@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC =	CC
-FLAGS =	-Werror -Wextra -Wall
+FLAGS =	-Werror -Wextra -Wall -g
 NAME =	so_long
 AR =	ar rcs
 SRC =	so_long.c
@@ -22,7 +22,9 @@ all:	${NAME}
 %.o:	%.c
 		${CC} ${FLAGS} -Imlx -c $< -o $@
 ${NAME}:	${OBJ}
-		${CC} ${OBJ} -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+		${CC} ${OBJ} ${FLAGS} -Lmlx -lmlx -framework OpenGL -framework AppKit -o ${NAME}
+exec:	all
+		./so_long
 clean:
 			rm -rf ${OBJ}
 

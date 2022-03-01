@@ -54,10 +54,28 @@ int	main(void)
 {
 	void	*mlx;
 	void	*img;
-	char	*relative_path = "./sprites/tile027.xpm";
+	void	*win_ptr;
+	char	*relative_path = "./sprites/tile027.xpm"; //buisson
 	int		img_width;
 	int		img_height;
+	int		x;
+	int		y;
 
 	mlx = mlx_init();
+	win_ptr = mlx_new_window(mlx, 512, 512, "The Legend of Diana");
 	img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
+	printf("largeur [%d] - hauteur [%d] \n", img_width, img_height);
+	x = 0;
+	y = 0;
+
+	while (x < 512)
+	{
+		mlx_put_image_to_window(mlx, win_ptr, img, x, 0);
+		x += img_width;
+	}
+/*
+	mlx_put_image_to_window(mlx, win_ptr, img, 16, 0);
+	mlx_put_image_to_window(mlx, win_ptr, img, 32, 0);
+*/
+	mlx_loop(mlx);
 }
