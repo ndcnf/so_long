@@ -55,7 +55,7 @@ int	main(void)
 	void	*mlx;
 	void	*img;
 	void	*win_ptr;
-	char	*relative_path = "./sprites/tile027.xpm"; //buisson
+	char	*relative_path = "./sprites/tile000.xpm";
 	int		img_width;
 	int		img_height;
 	int		x;
@@ -68,10 +68,15 @@ int	main(void)
 	x = 0;
 	y = 0;
 
-	while (x < 512)
+	while (y < 512)
 	{
-		mlx_put_image_to_window(mlx, win_ptr, img, x, 0);
-		x += img_width;
+		while (x < 512)
+		{
+			mlx_put_image_to_window(mlx, win_ptr, img, x, y);
+			x += img_width;
+		}
+		y += img_height;
+		x = 0;
 	}
 /*
 	mlx_put_image_to_window(mlx, win_ptr, img, 16, 0);
