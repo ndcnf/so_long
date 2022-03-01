@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include "mlx/mlx.h"
+#include	"so_long.h"
 
 void	ft_putchar(char c)
 {
@@ -52,35 +50,28 @@ int	key_on(int key, void *param)
 
 int	main(void)
 {
-	void	*mlx;
-	void	*img;
-	void	*win_ptr;
-	char	*relative_path = "./sprites/tile000.xpm";
-	int		img_width;
-	int		img_height;
-	int		x;
-	int		y;
+	t_board	bd;
 
-	mlx = mlx_init();
-	win_ptr = mlx_new_window(mlx, 512, 512, "The Legend of Diana");
-	img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-	printf("largeur [%d] - hauteur [%d] \n", img_width, img_height);
-	x = 0;
-	y = 0;
+	bd.win_h = 512;
+	bd.win_w = 512;
+	bd.sprt.path = "./sprites/tile000.xpm";
 
-	while (y < 512)
+	bd.mlx = mlx_init();
+	bd.win = mlx_new_window(bd.mlx, bd.win_h, bd.win_w, "The Legend of Diana");
+	bd.img = mlx_xpm_file_to_image(bd.mlx, bd.sprt.path, &bd.sprt.w, &bd.sprt.h);
+	
+	bd.map.x = 0;
+	bd.map.y = 0;
+
+	while (bd.map.y < bd.win_h)
 	{
-		while (x < 512)
+		while (bd.map.x < bd.win_w)
 		{
-			mlx_put_image_to_window(mlx, win_ptr, img, x, y);
-			x += img_width;
+			mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.map.x, bd.map.y);
+			bd.map.x += bd.sprt.w;
 		}
-		y += img_height;
-		x = 0;
+		bd.map.y += bd.sprt.w;
+		bd.map.x = 0;
 	}
-/*
-	mlx_put_image_to_window(mlx, win_ptr, img, 16, 0);
-	mlx_put_image_to_window(mlx, win_ptr, img, 32, 0);
-*/
-	mlx_loop(mlx);
+	mlx_loop(bd.mlx);
 }
