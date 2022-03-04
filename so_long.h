@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
+/*   Updated: 2022/03/04 12:06:13 by nchennaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <unistd.h>
@@ -8,7 +20,6 @@ typedef struct s_map
 {
 	int		x;
 	int		y;
-
 } t_map;
 
 typedef struct s_sprite
@@ -21,23 +32,12 @@ typedef struct s_sprite
 typedef struct s_board
 {
 	t_map		map;
-	t_sprite	sprt;
+	t_sprite	spr;
 	void		*mlx;
 	void		*img;
 	void		*win;
-	int			win_w;
-	int			win_h;
+	int			w; //win_w
+	int			h; //win_h
 } t_board;
-
-
-
-
-
-
-
-
-
-
-
 
 #endif

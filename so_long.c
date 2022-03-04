@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/02/28 10:19:43 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/04 12:06:48 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,25 @@ int	main(void)
 {
 	t_board	bd;
 
-	bd.win_h = 512;
-	bd.win_w = 512;
-	bd.sprt.path = "./sprites/tile000.xpm";
+	bd.h = 512;
+	bd.w = 512;
+	bd.spr.path = "./sprites/tile000.xpm";
 
 	bd.mlx = mlx_init();
-	bd.win = mlx_new_window(bd.mlx, bd.win_h, bd.win_w, "The Legend of Diana");
-	bd.img = mlx_xpm_file_to_image(bd.mlx, bd.sprt.path, &bd.sprt.w, &bd.sprt.h);
-	
+	bd.win = mlx_new_window(bd.mlx, bd.h, bd.w, "The Legend of Diana");
+	bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
+
 	bd.map.x = 0;
 	bd.map.y = 0;
 
-	while (bd.map.y < bd.win_h)
+	while (bd.map.y < bd.h)
 	{
-		while (bd.map.x < bd.win_w)
+		while (bd.map.x < bd.w)
 		{
 			mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.map.x, bd.map.y);
-			bd.map.x += bd.sprt.w;
+			bd.map.x += bd.spr.w;
 		}
-		bd.map.y += bd.sprt.w;
+		bd.map.y += bd.spr.w;
 		bd.map.x = 0;
 	}
 	mlx_loop(bd.mlx);
