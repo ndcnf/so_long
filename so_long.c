@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/04 12:06:48 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/09 14:34:30 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,39 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
+void	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		ft_putchar(s[i++]);
+}
+
+/********************************************
+|	Gestion des touches pressees 			|
+|	Affiche w a s d ou X selon input		|
+|	Statut : affiche juste, rien d'autre	|
+********************************************/
 int	key_on(int key, void *param)
 {
 	printf("key : %d\n", key);
 	printf("param : %p\n", param);
 
-	ft_putchar('X');
+	if (key == 53)
+		ft_putstr("Escape is an option");
+	else if (key == 13 || key == 126)
+		ft_putstr("Up");
+	else if (key == 0 || key == 123)
+		ft_putstr("Left");
+	else if (key == 1 || key == 125)
+		ft_putstr("Down");
+	else if (key == 2 || key == 124)
+		ft_putstr("Right");
+	else
+		ft_putstr("I don't understand this direction!");
+	ft_putchar('\n');
+
 	return (0);
 }
 
@@ -52,6 +79,7 @@ int	main(void)
 {
 	t_board	bd;
 
+	// definir la taille du board / fenetre
 	bd.h = 512;
 	bd.w = 512;
 	bd.spr.path = "./sprites/tile000.xpm";
@@ -63,6 +91,8 @@ int	main(void)
 	bd.map.x = 0;
 	bd.map.y = 0;
 
+	// Affiche une seule image sur l'entier de la fenetre
+	// Va remplir la ligne des x d'abord, puis la suivante a la fin de la ligne
 	while (bd.map.y < bd.h)
 	{
 		while (bd.map.x < bd.w)
@@ -73,5 +103,7 @@ int	main(void)
 		bd.map.y += bd.spr.w;
 		bd.map.x = 0;
 	}
-	mlx_loop(bd.mlx);
+
+	mlx_key_hook(bd.win, key_on, &bd.win); // gere les entrees des touches
+	mlx_loop(bd.mlx); //permet de boucler
 }
