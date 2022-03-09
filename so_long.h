@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/04 12:06:13 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/09 14:37:17 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ typedef struct s_board
 	int			w; //win_w
 	int			h; //win_h
 } t_board;
+
+int	key_on(int key, void *param);
 
 #endif

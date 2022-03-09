@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/09 14:34:30 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/09 14:41:20 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	ft_putstr(char *s)
 
 /********************************************
 |	Gestion des touches pressees 			|
-|	Affiche w a s d ou X selon input		|
-|	Statut : affiche juste, rien d'autre	|
+|	Gere w, a, s, d et ESC						|
+|	Statut : affiche juste un message		|
 ********************************************/
 int	key_on(int key, void *param)
 {
