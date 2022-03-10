@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/09 14:37:17 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/10 11:30:09 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "mlx/mlx.h"
+
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_UP 126
+# define KEY_LFT 123
+# define KEY_DWN 125
+# define KEY_RGT 124
+# define KEY_ESC 53
+
+# define IMG_P1 "./sprites/player00.xpm"
+# define IMG_P2 "./sprites/perso01.xpm" // n'existe pas reellement encore
+# define IMG_E "./sprites/heart00.xpm"
+# define IMG_C "./sprites/fruit00.xpm"
+# define IMG_WLL1 "./sprites/shrub00.xpm"
+# define IMG_WLL2 "./sprites/shrub01.xpm"
+# define IMG_GRD1 "./sprites/ground00.xpm"
+# define IMG_GRD2 "./sprites/ground01.xpm"
 
 typedef struct s_map
 {
