@@ -6,15 +6,18 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/10 11:30:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:18:59 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# include "./libft/libft.h"
+# include "./get_next_line/get_next_line.h"
+# include "./ft_printf/ft_printf.h"
 # include <unistd.h>
 # include <stdio.h>
-# include "mlx/mlx.h"
+# include "./mlx/mlx.h"
 
 # define KEY_W 13
 # define KEY_A 0
@@ -26,8 +29,12 @@
 # define KEY_RGT 124
 # define KEY_ESC 53
 
+# define WIN_TITLE "The Untold Legend of Diana And the Evil Shrubs"
+# define WIN_H 512
+# define WIN_W 512
+
 # define IMG_P1 "./sprites/player00.xpm"
-# define IMG_P2 "./sprites/perso01.xpm" // n'existe pas reellement encore
+# define IMG_P2 "./sprites/player01.xpm" // n'existe pas reellement encore
 # define IMG_E "./sprites/heart00.xpm"
 # define IMG_C "./sprites/fruit00.xpm"
 # define IMG_WLL1 "./sprites/shrub00.xpm"
@@ -39,14 +46,14 @@ typedef struct s_map
 {
 	int		x;
 	int		y;
-} t_map;
+}	t_map;
 
 typedef struct s_sprite
 {
 	int		w;
 	int		h;
 	char	*path;
-} t_sprite;
+}	t_sprite;
 
 typedef struct s_board
 {
@@ -55,10 +62,11 @@ typedef struct s_board
 	void		*mlx;
 	void		*img;
 	void		*win;
-	int			w; //win_w
-	int			h; //win_h
-} t_board;
+	int			w;
+	int			h;
+}	t_board;
 
 int	key_on(int key, void *param);
+int	item_on_map(char c);
 
 #endif

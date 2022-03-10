@@ -6,25 +6,11 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/09 14:41:20 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:44:33 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"so_long.h"
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		ft_putchar(s[i++]);
-}
 
 /********************************************
 |	Gestion des touches pressees 			|
@@ -33,23 +19,24 @@ void	ft_putstr(char *s)
 ********************************************/
 int	key_on(int key, void *param)
 {
-	printf("key : %d\n", key);
-	printf("param : %p\n", param);
-
-	if (key == 53)
-		ft_putstr("Escape is an option");
-	else if (key == 13 || key == 126)
-		ft_putstr("Up");
-	else if (key == 0 || key == 123)
-		ft_putstr("Left");
-	else if (key == 1 || key == 125)
-		ft_putstr("Down");
-	else if (key == 2 || key == 124)
-		ft_putstr("Right");
+	ft_printf("key : %d\n", key);
+	ft_printf("param : %p\n", param);
+	if (key == KEY_ESC)
+	{
+		ft_printf("Escape is an option");
+		exit(0);
+	}
+	else if (key == KEY_W || key == KEY_UP)
+		ft_printf("Up");
+	else if (key == KEY_A || key == KEY_LFT)
+		ft_printf("Left");
+	else if (key == KEY_S || key == KEY_DWN)
+		ft_printf("Down");
+	else if (key == KEY_D || key == KEY_RGT)
+		ft_printf("Right");
 	else
-		ft_putstr("I don't understand this direction!");
-	ft_putchar('\n');
-
+		ft_printf("I don't understand this direction!");
+	ft_printf("\n");
 	return (0);
 }
 
@@ -75,17 +62,37 @@ int	key_on(int key, void *param)
 }
 */
 
+int	item_on_map(char c)
+{
+	if (c == '1')
+		ft_printf("It's a shrub!");
+	else if (c == '0')
+		ft_printf("Hello ground!");
+	else if (c == 'P')
+		ft_printf("Hey, playa!");
+	else if (c == 'C')
+		ft_printf("Collect'em all!");
+	else if (c == 'E')
+		ft_printf("Sors, t'as plus l'temps!");
+	else
+		ft_printf("I don't think so, it's not valid");
+	ft_printf("\n");
+	return (0);
+}
+
 int	main(void)
 {
 	t_board	bd;
 
 	// definir la taille du board / fenetre
-	bd.h = 512;
-	bd.w = 512;
-	bd.spr.path = "./sprites/tile000.xpm";
+	bd.h = WIN_H;
+	bd.w = WIN_W;
+
+	// Definir le path selon le fichier .ber, donc foret d'if a gerer ici prochainement
+	bd.spr.path = IMG_WLL1; //INUTILE ?
 
 	bd.mlx = mlx_init();
-	bd.win = mlx_new_window(bd.mlx, bd.h, bd.w, "The Legend of Diana");
+	bd.win = mlx_new_window(bd.mlx, bd.h, bd.w, WIN_TITLE);
 	bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
 
 	bd.map.x = 0;
