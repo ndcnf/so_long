@@ -6,7 +6,7 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 15:43:45 by nchennaf          #+#    #+#              #
-#    Updated: 2022/03/11 12:40:54 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/03/11 13:42:06 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ all:	${NAME}
 		${CC} ${FLAGS} -Imlx -c $< -o $@
 ${NAME}:	${OBJ}
 		${MAKE} -C ${DIR_FTPRINTF}
+		${MAKE} -C ${DIR_LIBFT}
+		${MAKE} -C ${DIR_GNL}
 		${CC} ${OBJ} ${FLAGS} \
 		-L${DIR_FTPRINTF} -l${LIB_FTPRINTF} \
 		-L${DIR_LIBFT} -l${LIB_LIBFT} \
