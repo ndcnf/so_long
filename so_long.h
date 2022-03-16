@@ -72,6 +72,6 @@ typedef struct s_board
 }	t_board;
 
 int	key_on(int key, void *param);
-int	item_on_map(char c);
+int	item_on_map(char *s);
 
 #endif

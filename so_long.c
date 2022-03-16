@@ -68,70 +68,29 @@ int	read_map(char *s)
 	return 0;
 }
 
-int	item_on_map(char c)
+int	item_on_map(char *s)
 {
-	if (c == '1')
-		ft_printf("It's a shrub!");
-	else if (c == '0')
-		ft_printf("Hello ground!");
-	else if (c == 'P')
-		ft_printf("Hey, playa!");
-	else if (c == 'C')
-		ft_printf("Collect'em all!");
-	else if (c == 'E')
-		ft_printf("Sors, t'as plus l'temps!");
-	else
-		ft_printf("I don't think so, it's not valid");
-	ft_printf("\n");
+	int i;
+
+	i = -1;
+	while (s[++i])
+	{
+		if (s[i] == '1')
+			ft_printf("It's a shrub!");
+		else if (s[i] == '0')
+			ft_printf("Hello ground!");
+		else if (s[i] == 'P')
+			ft_printf("Hey, playa!");
+		else if (s[i] == 'C')
+			ft_printf("Collect'em all!");
+		else if (s[i] == 'E')
+			ft_printf("Sors, t'as plus l'temps!");
+		else
+			ft_printf("I don't think so, it's not valid");
+		ft_printf("\n");
+	}
 	return (0);
 }
-
-/* le main du GNL version esanchez
-int    main(int argc, char **argv)
-{
-    int    fd = open(argv[1], O_RDONLY);
-    char    *retour = get_next_line(fd);
-    int    i = 1;
-    (void)argc;
-    while (retour != NULL)
-    {
-        printf("%3i Retour fonction =%s",i , retour);
-        //write(1, "/", 1);
-        i++;
-        retour = get_next_line(fd);
-    }
-        printf("%3i Retour fonction =%s",i , retour);
-}*/
-
-/* le main du GNL maison
-int	main(int argc, char **argv)
-{
-	int		fd;
-	char	*gnl;
-
-	if (argc != 2)
-	{
-		ft_printf(ERR_ARG);
-		return (NULL);
-	}
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd <= 0)
-	{
-		ft_printf(ERR_FD);
-		return (-1);
-	}
-
-	gnl = get_next_line(fd);
-	while (gnl != NULL)
-	{
-		ft_printf("%s", gnl);
-		gnl = get_next_line(fd);
-	}
-	ft_printf("%s", gnl);
-	close(fd);
-	return (0);
-}*/
 
 int	main(int argc, char *argv[])
 {
@@ -156,6 +115,7 @@ int	main(int argc, char *argv[])
 	while (gnl != NULL)
 	{
 		ft_printf("%s", gnl);
+		item_on_map(gnl);
 		gnl = get_next_line(fd);
 	}
 	close(fd);
