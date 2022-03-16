@@ -14,7 +14,7 @@
 
 /********************************************
 |	Gestion des touches pressees 			|
-|	Gere w, a, s, d et ESC						|
+|	Gere w, a, s, d et ESC					|
 |	Statut : affiche juste un message		|
 ********************************************/
 int	key_on(int key, void *param)
@@ -62,6 +62,12 @@ int	key_on(int key, void *param)
 }
 */
 
+int	read_map(char *s)
+{
+	(void)s;
+	return 0;
+}
+
 int	item_on_map(char c)
 {
 	if (c == '1')
@@ -80,9 +86,79 @@ int	item_on_map(char c)
 	return (0);
 }
 
-int	main(void)
+/* le main du GNL version esanchez
+int    main(int argc, char **argv)
+{
+    int    fd = open(argv[1], O_RDONLY);
+    char    *retour = get_next_line(fd);
+    int    i = 1;
+    (void)argc;
+    while (retour != NULL)
+    {
+        printf("%3i Retour fonction =%s",i , retour);
+        //write(1, "/", 1);
+        i++;
+        retour = get_next_line(fd);
+    }
+        printf("%3i Retour fonction =%s",i , retour);
+}*/
+
+/* le main du GNL maison
+int	main(int argc, char **argv)
+{
+	int		fd;
+	char	*gnl;
+
+	if (argc != 2)
+	{
+		ft_printf(ERR_ARG);
+		return (NULL);
+	}
+
+	fd = open(argv[1], O_RDONLY);
+	if (fd <= 0)
+	{
+		ft_printf(ERR_FD);
+		return (-1);
+	}
+
+	gnl = get_next_line(fd);
+	while (gnl != NULL)
+	{
+		ft_printf("%s", gnl);
+		gnl = get_next_line(fd);
+	}
+	ft_printf("%s", gnl);
+	close(fd);
+	return (0);
+}*/
+
+int	main(int argc, char *argv[])
 {
 	t_board	bd;
+	int		fd;
+	char	*gnl;
+
+	if (argc != 2)
+	{
+		ft_printf(ERROR ERR_ARG);
+		return (0);
+	}
+
+	fd = open(argv[1], O_RDONLY);
+	if (fd <= 0)
+	{
+		ft_printf(ERROR ERR_FD);
+		return (-1);
+	}
+
+	gnl = get_next_line(fd);
+	while (gnl != NULL)
+	{
+		ft_printf("%s", gnl);
+		gnl = get_next_line(fd);
+	}
+	close(fd);
 
 	// definir la taille du board / fenetre
 	bd.h = WIN_H;
@@ -113,4 +189,6 @@ int	main(void)
 
 	mlx_key_hook(bd.win, key_on, &bd.win); // gere les entrees des touches
 	mlx_loop(bd.mlx); //permet de boucler
+
+	return (0);
 }
