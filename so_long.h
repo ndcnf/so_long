@@ -43,7 +43,7 @@
 # define IMG_GRD2 "./sprites/ground01.xpm"
 
 # define ERROR "Error\n"
-# define ERR_ARG  "Nombre d'arguments invalide\n"
+# define ERR_ARG "Nombre d'arguments invalide\n"
 # define ERR_FD "Erreur avec le descripteur de fichiers\n"
 
 

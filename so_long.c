@@ -23,7 +23,7 @@ int	key_on(int key, void *param)
 	ft_printf("param : %p\n", param);
 	if (key == KEY_ESC)
 	{
-		ft_printf("Escape is an option");
+		ft_printf("Escape is an option\n");
 		exit(0);
 	}
 	else if (key == KEY_W || key == KEY_UP)
@@ -68,15 +68,27 @@ int	read_map(char *s)
 	return 0;
 }
 
+/*char	pathfinder(char c)
+{
+	char	*path;
+
+
+
+	return (path);
+}*/
+
 int	item_on_map(char *s)
 {
-	int i;
+	int 	i;
 
 	i = -1;
 	while (s[++i])
 	{
 		if (s[i] == '1')
+		{
 			ft_printf("It's a shrub!");
+			//board.spr.path = IMG_WLL2;
+		}
 		else if (s[i] == '0')
 			ft_printf("Hello ground!");
 		else if (s[i] == 'P')
@@ -85,6 +97,8 @@ int	item_on_map(char *s)
 			ft_printf("Collect'em all!");
 		else if (s[i] == 'E')
 			ft_printf("Sors, t'as plus l'temps!");
+		else if (s[i] == '\n')
+			ft_printf("Have you returned?");
 		else
 			ft_printf("I don't think so, it's not valid");
 		ft_printf("\n");
@@ -125,7 +139,7 @@ int	main(int argc, char *argv[])
 	bd.w = WIN_W;
 
 	// Definir le path selon le fichier .ber, donc foret d'if a gerer ici prochainement
-	bd.spr.path = IMG_WLL1; //INUTILE ?
+	bd.spr.path = IMG_WLL2;
 
 	bd.mlx = mlx_init();
 	bd.win = mlx_new_window(bd.mlx, bd.h, bd.w, WIN_TITLE);
