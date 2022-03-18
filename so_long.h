@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/10 17:18:59 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/18 18:22:52 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define KEY_RGT 124
 # define KEY_ESC 53
 
-# define WIN_TITLE "The Untold Legend of Diana And the Evil Shrubs"
+# define WIN_TITLE "The Untold Legend of Diana And the Evil Shrubs (working title)"
 # define WIN_H 512
 # define WIN_W 512
 
@@ -46,7 +46,6 @@
 # define ERR_ARG "Nombre d'arguments invalide\n"
 # define ERR_FD "Erreur avec le descripteur de fichiers\n"
 
-
 typedef struct s_map
 {
 	int		x;
@@ -57,6 +56,8 @@ typedef struct s_sprite
 {
 	int		w;
 	int		h;
+	int		id;
+	char	type;
 	char	*path;
 }	t_sprite;
 
@@ -69,9 +70,15 @@ typedef struct s_board
 	void		*win;
 	int			w;
 	int			h;
+	t_sprite	wll;
+	t_sprite	p;
+	t_sprite	e;
+	t_sprite	c;
+	t_sprite	grd;
 }	t_board;
 
-int	key_on(int key, void *param);
-int	item_on_map(char *s);
+int		key_on(int key, void *param);
+int		item_on_map(char *s);
+void	init_sprites(t_board *bd);
 
 #endif

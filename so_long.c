@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/10 17:44:33 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/18 18:26:06 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	read_map(char *s)
 
 /*char	pathfinder(char c)
 {
-	char	*path;
 
 
 
@@ -79,7 +78,7 @@ int	read_map(char *s)
 
 int	item_on_map(char *s)
 {
-	int 	i;
+	int 		i;
 
 	i = -1;
 	while (s[++i])
@@ -87,7 +86,7 @@ int	item_on_map(char *s)
 		if (s[i] == '1')
 		{
 			ft_printf("It's a shrub!");
-			//board.spr.path = IMG_WLL2;
+			//mlx_put_image_to_window();
 		}
 		else if (s[i] == '0')
 			ft_printf("Hello ground!");
@@ -111,6 +110,7 @@ int	main(int argc, char *argv[])
 	t_board	bd;
 	int		fd;
 	char	*gnl;
+	int		cnt;
 
 	if (argc != 2)
 	{
@@ -128,22 +128,24 @@ int	main(int argc, char *argv[])
 	gnl = get_next_line(fd);
 	while (gnl != NULL)
 	{
-		ft_printf("%s", gnl);
+		cnt = ft_printf("%s", gnl);
+		ft_printf("d : %d\n", cnt); // nbre d images a afficher par ligne (-1)
 		item_on_map(gnl);
 		gnl = get_next_line(fd);
 	}
 	close(fd);
 
+	init_sprites(&bd);
 	// definir la taille du board / fenetre
 	bd.h = WIN_H;
 	bd.w = WIN_W;
 
 	// Definir le path selon le fichier .ber, donc foret d'if a gerer ici prochainement
-	bd.spr.path = IMG_WLL2;
+	bd.spr.path = IMG_WLL1;
 
 	bd.mlx = mlx_init();
 	bd.win = mlx_new_window(bd.mlx, bd.h, bd.w, WIN_TITLE);
-	bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
+	//bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
 
 	bd.map.x = 0;
 	bd.map.y = 0;
@@ -154,6 +156,7 @@ int	main(int argc, char *argv[])
 	{
 		while (bd.map.x < bd.w)
 		{
+			bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
 			mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.map.x, bd.map.y);
 			bd.map.x += bd.spr.w;
 		}
