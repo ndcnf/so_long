@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/18 18:26:06 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/22 16:23:09 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	main(int argc, char *argv[])
 	int		fd;
 	char	*gnl;
 	int		cnt;
+	int		i;
 
 	if (argc != 2)
 	{
@@ -125,6 +126,7 @@ int	main(int argc, char *argv[])
 		return (-1);
 	}
 
+	i = 0;
 	gnl = get_next_line(fd);
 	while (gnl != NULL)
 	{
@@ -132,19 +134,25 @@ int	main(int argc, char *argv[])
 		ft_printf("d : %d\n", cnt); // nbre d images a afficher par ligne (-1)
 		item_on_map(gnl);
 		gnl = get_next_line(fd);
+		i++;
 	}
 	close(fd);
 
-	init_sprites(&bd);
+	//init_sprites(&bd);
+
 	// definir la taille du board / fenetre
-	bd.h = WIN_H;
-	bd.w = WIN_W;
+	//bd.h = WIN_H;
+	bd.h = i * IMG_PXL; //au lieu d'IMG_PXL, prendre directement la taille bd.spr.h
+	ft_printf("cnt : %d\n", cnt);
+	//bd.w = WIN_W;
+	bd.w = (cnt - 1) * IMG_PXL; //au lieu d'IMG_PXL, prendre directement la taille bd.spr.w
+	ft_printf("i : %d\n", i);
 
 	// Definir le path selon le fichier .ber, donc foret d'if a gerer ici prochainement
 	bd.spr.path = IMG_WLL1;
 
 	bd.mlx = mlx_init();
-	bd.win = mlx_new_window(bd.mlx, bd.h, bd.w, WIN_TITLE);
+	bd.win = mlx_new_window(bd.mlx, bd.w, bd.h, WIN_TITLE);
 	//bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
 
 	bd.map.x = 0;
@@ -152,15 +160,17 @@ int	main(int argc, char *argv[])
 
 	// Affiche une seule image sur l'entier de la fenetre
 	// Va remplir la ligne des x d'abord, puis la suivante a la fin de la ligne
-	while (bd.map.y < bd.h)
+	ft_printf("bdH avant(y): %d [%d]\n", bd.h, (bd.h/16));
+	ft_printf("bdW avant(x): %d [%d]\n", bd.w, (bd.w/16));
+	while (bd.map.y <= bd.h)
 	{
-		while (bd.map.x < bd.w)
+		while (bd.map.x <= bd.w)
 		{
 			bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
 			mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.map.x, bd.map.y);
 			bd.map.x += bd.spr.w;
 		}
-		bd.map.y += bd.spr.w;
+		bd.map.y += bd.spr.h;
 		bd.map.x = 0;
 	}
 
