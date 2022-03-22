@@ -6,15 +6,15 @@
 #    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 15:43:45 by nchennaf          #+#    #+#              #
-#    Updated: 2022/03/22 14:42:44 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/03/22 17:07:53 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC =	CC
-FLAGS =	-Werror -Wextra -Wall -g
+FLAGS =	-Wall -Wextra -Werror -g -fsanitize=address
 NAME =	so_long
 AR =	ar rcs
-SRC =	so_long.c
+SRC =	so_long.c so_long_init.c
 DIR_FTPRINTF = ./ft_printf/
 LIB_FTPRINTF = ftprintf
 DIR_LIBFT = ./libft/

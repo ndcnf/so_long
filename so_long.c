@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/22 16:23:09 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/22 18:02:27 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,22 @@ int	read_map(char *s)
 	return 0;
 }
 
-/*char	pathfinder(char c)
+void	pathfinder(char *path)
 {
+	t_board bd;
 
+	bd.img = mlx_xpm_file_to_image(bd.mlx, path, &bd.spr.w, &bd.spr.h);
+	mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.w, bd.h);
+}
 
-
-	return (path);
-}*/
-
-int	item_on_map(char *s)
+// BOSSER LA DESSUS LA PROCHAINE FOIS.
+/*
+	Inbriquer pathfinder, itemonmap et le main pour
+	afficher la bonne image selon le fichier .ber
+*/
+void	item_on_map(char *s)
 {
-	int 		i;
+	int	i;
 
 	i = -1;
 	while (s[++i])
@@ -86,7 +91,7 @@ int	item_on_map(char *s)
 		if (s[i] == '1')
 		{
 			ft_printf("It's a shrub!");
-			//mlx_put_image_to_window();
+			pathfinder(IMG_WLL1);
 		}
 		else if (s[i] == '0')
 			ft_printf("Hello ground!");
@@ -102,7 +107,7 @@ int	item_on_map(char *s)
 			ft_printf("I don't think so, it's not valid");
 		ft_printf("\n");
 	}
-	return (0);
+	//return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -138,18 +143,16 @@ int	main(int argc, char *argv[])
 	}
 	close(fd);
 
-	//init_sprites(&bd);
+	init_sprites(&bd);
 
 	// definir la taille du board / fenetre
-	//bd.h = WIN_H;
 	bd.h = i * IMG_PXL; //au lieu d'IMG_PXL, prendre directement la taille bd.spr.h
 	ft_printf("cnt : %d\n", cnt);
-	//bd.w = WIN_W;
 	bd.w = (cnt - 1) * IMG_PXL; //au lieu d'IMG_PXL, prendre directement la taille bd.spr.w
 	ft_printf("i : %d\n", i);
 
 	// Definir le path selon le fichier .ber, donc foret d'if a gerer ici prochainement
-	bd.spr.path = IMG_WLL1;
+	//bd.spr.path = IMG_WLL1;
 
 	bd.mlx = mlx_init();
 	bd.win = mlx_new_window(bd.mlx, bd.w, bd.h, WIN_TITLE);
@@ -166,8 +169,9 @@ int	main(int argc, char *argv[])
 	{
 		while (bd.map.x <= bd.w)
 		{
-			bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
-			mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.map.x, bd.map.y);
+			item_on_map(gnl) // REFLECHIR ENCORE A L'ENTREE POUR LA POSITION NOTAMMENT
+			//bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
+			//mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.map.x, bd.map.y);
 			bd.map.x += bd.spr.w;
 		}
 		bd.map.y += bd.spr.h;
