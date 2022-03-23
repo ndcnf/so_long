@@ -6,20 +6,20 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:36:28 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/22 17:45:54 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:42:50 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_sprites(t_board *bd)
+/*void	init_sprites(t_board *bd)
 {
 	bd->wll.type = mlx_xpm_file_to_image(bd->mlx, IMG_WLL1, &bd -> w, &bd -> h);
 	bd->grd.type = mlx_xpm_file_to_image(bd -> mlx, IMG_GRD1, &bd -> w, &bd -> h);
 	bd->p.type = mlx_xpm_file_to_image(bd -> mlx, IMG_P1, &bd -> w, &bd -> h);
 	bd->c.type = mlx_xpm_file_to_image(bd -> mlx, IMG_C, &bd -> w, &bd -> h);
 	bd->e.type = mlx_xpm_file_to_image(bd -> mlx, IMG_E, &bd -> w, &bd -> h);
-}
+}*/
 
 /* CODE DE CLAIRE a etudier
 

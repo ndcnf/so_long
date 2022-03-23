@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/22 18:02:27 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:53:30 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,13 @@ int	key_on(int key, void *param)
 }
 */
 
-int	read_map(char *s)
+void	pathfinder(t_board *bd, char *path)
 {
-	(void)s;
-	return 0;
-}
+	t_sprite sprite;
 
-void	pathfinder(char *path)
-{
-	t_board bd;
-
-	bd.img = mlx_xpm_file_to_image(bd.mlx, path, &bd.spr.w, &bd.spr.h);
-	mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.w, bd.h);
+	sprite.img = mlx_xpm_file_to_image(bd->mlx, path, &sprite.w, &sprite.h);
+	mlx_put_image_to_window(bd->mlx, bd->win, sprite.img, bd->w, bd->h);
+	ft_printf("bd.img [%s] - path [%s]\n", sprite.img, path);
 }
 
 // BOSSER LA DESSUS LA PROCHAINE FOIS.
@@ -81,17 +76,21 @@ void	pathfinder(char *path)
 	Inbriquer pathfinder, itemonmap et le main pour
 	afficher la bonne image selon le fichier .ber
 */
-void	item_on_map(char *s)
+void	item_on_map(t_board *bd, char *s)
 {
 	int	i;
+
+	if (!s)
+		return ;
 
 	i = -1;
 	while (s[++i])
 	{
+		ft_printf("i: [%d]", i);
 		if (s[i] == '1')
 		{
-			ft_printf("It's a shrub!");
-			pathfinder(IMG_WLL1);
+			//ft_printf("It's a shrub!");
+			pathfinder(bd, IMG_WLL1);
 		}
 		else if (s[i] == '0')
 			ft_printf("Hello ground!");
@@ -117,6 +116,7 @@ int	main(int argc, char *argv[])
 	char	*gnl;
 	int		cnt;
 	int		i;
+	char	*map;
 
 	if (argc != 2)
 	{
@@ -133,19 +133,20 @@ int	main(int argc, char *argv[])
 
 	i = 0;
 	gnl = get_next_line(fd);
+	map = ft_strdup("");
 	while (gnl != NULL)
 	{
 		cnt = ft_printf("%s", gnl);
 		ft_printf("d : %d\n", cnt); // nbre d images a afficher par ligne (-1)
-		item_on_map(gnl);
+		//item_on_map(&bd, gnl);
+		map = ft_strjoin(map, gnl);
 		gnl = get_next_line(fd);
 		i++;
 	}
 	close(fd);
 
-	init_sprites(&bd);
+	//init_sprites(&bd);
 
-	// definir la taille du board / fenetre
 	bd.h = i * IMG_PXL; //au lieu d'IMG_PXL, prendre directement la taille bd.spr.h
 	ft_printf("cnt : %d\n", cnt);
 	bd.w = (cnt - 1) * IMG_PXL; //au lieu d'IMG_PXL, prendre directement la taille bd.spr.w
@@ -165,11 +166,13 @@ int	main(int argc, char *argv[])
 	// Va remplir la ligne des x d'abord, puis la suivante a la fin de la ligne
 	ft_printf("bdH avant(y): %d [%d]\n", bd.h, (bd.h/16));
 	ft_printf("bdW avant(x): %d [%d]\n", bd.w, (bd.w/16));
+	ft_printf("gnl: [%s] - map: [%s]\n", gnl, map);
+	//item_on_map(&bd, map); // REFLECHIR ENCORE A L'ENTREE POUR LA POSITION NOTAMMENT
 	while (bd.map.y <= bd.h)
 	{
 		while (bd.map.x <= bd.w)
 		{
-			item_on_map(gnl) // REFLECHIR ENCORE A L'ENTREE POUR LA POSITION NOTAMMENT
+			//item_on_map(&bd, map); // REFLECHIR ENCORE A L'ENTREE POUR LA POSITION NOTAMMENT
 			//bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
 			//mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.map.x, bd.map.y);
 			bd.map.x += bd.spr.w;
