@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/24 16:50:04 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:07:37 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,42 +68,33 @@ void	pathfinder(t_board *bd, char *path)
 
 	sprite.img = mlx_xpm_file_to_image(bd->mlx, path, &sprite.w, &sprite.h);
 	mlx_put_image_to_window(bd->mlx, bd->win, sprite.img, bd->map.x, bd->map.y);
-	ft_printf("bd.img [%s] - path [%s] | mapX: [%d], mapY: [%d]\n", sprite.img, path, bd->map.x, bd->map.y);
 }
 
-// BOSSER LA DESSUS LA PROCHAINE FOIS.
-/*
-	Inbriquer pathfinder, itemonmap et le main pour
-	afficher la bonne image selon le fichier .ber
-*/
-void	item_on_map(t_board *bd, char *s)
+void	item_on_map(t_board *bd)
 {
 	static size_t	i = -1;
 
-	if (!s)
+	if (!bd->map.content)
 		return ;
 
-	if (++i < ft_strlen(s))
+	if (++i < ft_strlen(bd->map.content))
 	{
-		ft_printf("i: [%d]", i);
 		pathfinder(bd, IMG_GRD2);
-		if (s[i] == '1')
+		if (bd->map.content[i] == '1')
 			pathfinder(bd, IMG_WLL1);
-		else if (s[i] == '0')
+		else if (bd->map.content[i] == '0')
 			pathfinder(bd, IMG_GRD1);
-		else if (s[i] == 'P')
+		else if (bd->map.content[i] == 'P')
 			pathfinder(bd, IMG_P2);
-		else if (s[i] == 'C')
+		else if (bd->map.content[i] == 'C')
 			pathfinder(bd, IMG_C);
-		else if (s[i] == 'E')
+		else if (bd->map.content[i] == 'E')
 			pathfinder(bd, IMG_E);
-		else if (s[i] == '\n')
-			ft_printf("Have you returned?");
+		else if (bd->map.content[i] == '\n')
+			ft_printf("Have you returned?\n");
 		else
-			ft_printf("I don't think so, it's not valid");
-		ft_printf("\n");
+			ft_printf("I don't think so, it's not valid\n");
 	}
-	//return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -113,7 +104,6 @@ int	main(int argc, char *argv[])
 	char	*gnl;
 	int		cnt;
 	int		i;
-	char	*map_content;
 
 	if (argc != 2)
 	{
@@ -130,54 +120,35 @@ int	main(int argc, char *argv[])
 
 	i = 0;
 	gnl = get_next_line(fd);
-	map_content = ft_strdup("");
+	bd.map.content = ft_strdup("");
 	while (gnl != NULL)
 	{
 		cnt = ft_printf("%s", gnl);
-		ft_printf("d : %d\n", cnt); // nbre d images a afficher par ligne (-1)
-		//item_on_map(&bd, gnl);
-		map_content = ft_strjoin(map_content, gnl);
+		bd.map.content = ft_strjoin(bd.map.content, gnl);
 		gnl = get_next_line(fd);
 		i++;
 	}
 	close(fd);
 
-	//init_sprites(&bd);
-
-	bd.h = i * IMG_PXL; //au lieu d'IMG_PXL, prendre directement la taille bd.spr.h
+	bd.h = i * IMG_PXL;
 	ft_printf("cnt : %d\n", cnt);
-	bd.w = (cnt - 1) * IMG_PXL; //au lieu d'IMG_PXL, prendre directement la taille bd.spr.w
+	bd.w = (cnt - 1) * IMG_PXL;
 	ft_printf("i : %d\n", i);
-
-	// Definir le path selon le fichier .ber, donc foret d'if a gerer ici prochainement
-	//bd.spr.path = IMG_WLL1;
 
 	bd.mlx = mlx_init();
 	bd.win = mlx_new_window(bd.mlx, bd.w, bd.h, WIN_TITLE);
-	//bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
 
 	bd.map.x = 0;
 	bd.map.y = 0;
 
-	// Affiche une seule image sur l'entier de la fenetre
-	// Va remplir la ligne des x d'abord, puis la suivante a la fin de la ligne
-	ft_printf("bdH avant(y): %d [%d]\n", bd.h, (bd.h/16));
-	ft_printf("bdW avant(x): %d [%d]\n", bd.w, (bd.w/16));
-	ft_printf("gnl: [%s] - map: [%s]\n", gnl, map_content);
-	//item_on_map(&bd, map); // REFLECHIR ENCORE A L'ENTREE POUR LA POSITION NOTAMMENT
 	while (bd.map.y <= bd.h)
 	{
 		while (bd.map.x <= bd.w)
 		{
-			item_on_map(&bd, map_content); // REFLECHIR ENCORE A L'ENTREE POUR LA POSITION NOTAMMENT
-			//bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
-			//mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.map.x, bd.map.y);
-			//ft_printf("map_content: {%s}\n", map_content);
-
+			item_on_map(&bd);
 			bd.map.x += IMG_PXL;
 		}
 		bd.map.y += IMG_PXL;
-		//bd.map.y += bd.spr.h;
 		bd.map.x = 0;
 	}
 

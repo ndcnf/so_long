@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/24 16:33:51 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/24 17:05:41 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_map
 {
 	int		x;
 	int		y;
+	char	*content;
 }	t_map;
 
 typedef struct s_sprite
@@ -61,7 +62,6 @@ typedef struct s_sprite
 	int		w;
 	int		h;
 	void	*img;
-	//char	*path;
 }	t_sprite;
 
 /********************************************
@@ -77,16 +77,9 @@ typedef struct s_board
 	void		*win;
 	int			w;
 	int			h;
-	t_sprite	wll;
-	t_sprite	p;
-	t_sprite	e;
-	t_sprite	c;
-	t_sprite	grd;
 }	t_board;
 
 int		key_on(int key, void *param);
-//int		item_on_map(char *s);
-void	item_on_map(t_board *bd, char *s);
-//void	init_sprites(t_board *bd);
+void	item_on_map(t_board *bd);
 
 #endif
