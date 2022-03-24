@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/23 18:53:30 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/24 16:50:04 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	pathfinder(t_board *bd, char *path)
 	t_sprite sprite;
 
 	sprite.img = mlx_xpm_file_to_image(bd->mlx, path, &sprite.w, &sprite.h);
-	mlx_put_image_to_window(bd->mlx, bd->win, sprite.img, bd->w, bd->h);
-	ft_printf("bd.img [%s] - path [%s]\n", sprite.img, path);
+	mlx_put_image_to_window(bd->mlx, bd->win, sprite.img, bd->map.x, bd->map.y);
+	ft_printf("bd.img [%s] - path [%s] | mapX: [%d], mapY: [%d]\n", sprite.img, path, bd->map.x, bd->map.y);
 }
 
 // BOSSER LA DESSUS LA PROCHAINE FOIS.
@@ -78,28 +78,25 @@ void	pathfinder(t_board *bd, char *path)
 */
 void	item_on_map(t_board *bd, char *s)
 {
-	int	i;
+	static size_t	i = -1;
 
 	if (!s)
 		return ;
 
-	i = -1;
-	while (s[++i])
+	if (++i < ft_strlen(s))
 	{
 		ft_printf("i: [%d]", i);
+		pathfinder(bd, IMG_GRD2);
 		if (s[i] == '1')
-		{
-			//ft_printf("It's a shrub!");
 			pathfinder(bd, IMG_WLL1);
-		}
 		else if (s[i] == '0')
-			ft_printf("Hello ground!");
+			pathfinder(bd, IMG_GRD1);
 		else if (s[i] == 'P')
-			ft_printf("Hey, playa!");
+			pathfinder(bd, IMG_P2);
 		else if (s[i] == 'C')
-			ft_printf("Collect'em all!");
+			pathfinder(bd, IMG_C);
 		else if (s[i] == 'E')
-			ft_printf("Sors, t'as plus l'temps!");
+			pathfinder(bd, IMG_E);
 		else if (s[i] == '\n')
 			ft_printf("Have you returned?");
 		else
@@ -116,7 +113,7 @@ int	main(int argc, char *argv[])
 	char	*gnl;
 	int		cnt;
 	int		i;
-	char	*map;
+	char	*map_content;
 
 	if (argc != 2)
 	{
@@ -133,13 +130,13 @@ int	main(int argc, char *argv[])
 
 	i = 0;
 	gnl = get_next_line(fd);
-	map = ft_strdup("");
+	map_content = ft_strdup("");
 	while (gnl != NULL)
 	{
 		cnt = ft_printf("%s", gnl);
 		ft_printf("d : %d\n", cnt); // nbre d images a afficher par ligne (-1)
 		//item_on_map(&bd, gnl);
-		map = ft_strjoin(map, gnl);
+		map_content = ft_strjoin(map_content, gnl);
 		gnl = get_next_line(fd);
 		i++;
 	}
@@ -166,18 +163,21 @@ int	main(int argc, char *argv[])
 	// Va remplir la ligne des x d'abord, puis la suivante a la fin de la ligne
 	ft_printf("bdH avant(y): %d [%d]\n", bd.h, (bd.h/16));
 	ft_printf("bdW avant(x): %d [%d]\n", bd.w, (bd.w/16));
-	ft_printf("gnl: [%s] - map: [%s]\n", gnl, map);
+	ft_printf("gnl: [%s] - map: [%s]\n", gnl, map_content);
 	//item_on_map(&bd, map); // REFLECHIR ENCORE A L'ENTREE POUR LA POSITION NOTAMMENT
 	while (bd.map.y <= bd.h)
 	{
 		while (bd.map.x <= bd.w)
 		{
-			//item_on_map(&bd, map); // REFLECHIR ENCORE A L'ENTREE POUR LA POSITION NOTAMMENT
+			item_on_map(&bd, map_content); // REFLECHIR ENCORE A L'ENTREE POUR LA POSITION NOTAMMENT
 			//bd.img = mlx_xpm_file_to_image(bd.mlx, bd.spr.path, &bd.spr.w, &bd.spr.h);
 			//mlx_put_image_to_window(bd.mlx, bd.win, bd.img, bd.map.x, bd.map.y);
-			bd.map.x += bd.spr.w;
+			//ft_printf("map_content: {%s}\n", map_content);
+
+			bd.map.x += IMG_PXL;
 		}
-		bd.map.y += bd.spr.h;
+		bd.map.y += IMG_PXL;
+		//bd.map.y += bd.spr.h;
 		bd.map.x = 0;
 	}
 

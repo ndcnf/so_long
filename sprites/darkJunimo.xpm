@@ -1,0 +1,31 @@
+/* XPM */
+static char *darkJunimo1648135922[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 9 1 ",
+"  c None",
+". c black",
+"X c #1E211D",
+"o c #2D2E27",
+"O c #33382F",
+"+ c #3E433E",
+"@ c #757867",
+"# c #B596AC",
+"$ c #BCE3CE",
+/* pixels */
+"                ",
+"        $       ",
+"  o     o    o  ",
+" o   oooooo   o ",
+" o  oXXOoXXo  o ",
+" o oX.+oo+.Xo o ",
+" oo+X.++++.X+oo ",
+"  o+.XXXXXX.+o  ",
+"  o..........o  ",
+"  o..........o  ",
+"  o..$....$..o  ",
+"  o..X....X..o  ",
+"  o+##..@.##+o  ",
+"   o+......+o   ",
+"    oooooooo    ",
+"   oo      oo   "
+};
