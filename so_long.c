@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/24 17:07:37 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:12:27 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ void	item_on_map(t_board *bd)
 
 	if (++i < ft_strlen(bd->map.content))
 	{
-		pathfinder(bd, IMG_GRD2);
+		pathfinder(bd, IMG_GRD1);
 		if (bd->map.content[i] == '1')
-			pathfinder(bd, IMG_WLL1);
+			pathfinder(bd, IMG_WLL2);
 		else if (bd->map.content[i] == '0')
-			pathfinder(bd, IMG_GRD1);
+			pathfinder(bd, IMG_GRD2);
 		else if (bd->map.content[i] == 'P')
 			pathfinder(bd, IMG_P2);
 		else if (bd->map.content[i] == 'C')

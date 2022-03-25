@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/24 17:05:41 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:08:15 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@
 # define WIN_TITLE "The Untold Legend of Diana And the Evil Shrubs (working title)"
 # define WIN_H 512
 # define WIN_W 512
-# define IMG_PXL 16 //vraiment utile ou redondant ?
+# define IMG_PXL 32 //vraiment utile ou redondant ?
 
 # define IMG_P1 "./sprites/blob01.xpm"
-# define IMG_P2 "./sprites/darkJunimo.xpm"
+# define IMG_P2 "./sprites/jumino.xpm"
 # define IMG_E "./sprites/heart00.xpm"
 # define IMG_C "./sprites/fruit00.xpm"
 # define IMG_WLL1 "./sprites/shrub00.xpm"
