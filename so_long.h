@@ -28,6 +28,7 @@
 # define KEY_DWN 125
 # define KEY_RGT 124
 # define KEY_ESC 53
+# define X_BTN 17
 
 # define WIN_TITLE "The Untold Legend of Diana And the Evil Shrubs (working title)"
 # define WIN_H 512
@@ -81,5 +82,6 @@ typedef struct s_board
 
 int		key_on(int key, void *param);
 void	item_on_map(t_board *bd);
+int		close_win(void);
 
 #endif

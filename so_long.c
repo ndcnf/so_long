@@ -22,10 +22,7 @@ int	key_on(int key, void *param)
 	ft_printf("key : %d\n", key);
 	ft_printf("param : %p\n", param);
 	if (key == KEY_ESC)
-	{
-		ft_printf("Escape is an option\n");
-		exit(0);
-	}
+		close_win();
 	else if (key == KEY_W || key == KEY_UP)
 		ft_printf("Up");
 	else if (key == KEY_A || key == KEY_LFT)
@@ -37,30 +34,8 @@ int	key_on(int key, void *param)
 	else
 		ft_printf("I don't understand this direction!");
 	ft_printf("\n");
-	return (0);
+	return (EXIT_SUCCESS);
 }
-
-/*int	main()
-{
-	void	*mlx;
-	void	*win_ptr;
-	void	*img;
-	char	*path;
-	int		img_w;
-	int		img_h;
-
-	mlx = mlx_init();
-	win_ptr = mlx_new_window(mlx, 500, 500, "The Legend of Diana");
-	//img = mlx_new_image(mlx, 500, 500);
-	path = "./sprites/tile027.xpm";
-	img = mlx_xpm_file_to_image(mlx, path, &img_w, &img_h);
-
-	//mlx_pixel_put(mlx, win_ptr, 250, 20, 0x00FF00FF);
-	mlx_key_hook(win_ptr, key_on, &win_ptr);
-	mlx_loop(mlx);
-	return (0);
-}
-*/
 
 void	pathfinder(t_board *bd, char *path)
 {
@@ -97,6 +72,11 @@ void	item_on_map(t_board *bd)
 	}
 }
 
+int	close_win(void)
+{
+	exit(EXIT_SUCCESS);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_board	bd;
@@ -108,14 +88,14 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		ft_printf(ERROR ERR_ARG);
-		return (0);
+		return (EXIT_FAILURE);
 	}
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd <= 0)
 	{
 		ft_printf(ERROR ERR_FD);
-		return (-1);
+		return (EXIT_FAILURE);
 	}
 
 	i = 0;
@@ -153,7 +133,8 @@ int	main(int argc, char *argv[])
 	}
 
 	mlx_key_hook(bd.win, key_on, &bd.win); // gere les entrees des touches
+	mlx_hook(bd.win, X_BTN, 0, close_win, &bd);
 	mlx_loop(bd.mlx); //permet de boucler
 
-	return (0);
+	return (EXIT_SUCCESS);
 }
