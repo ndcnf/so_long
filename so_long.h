@@ -47,6 +47,7 @@
 # define ERROR "Error\n"
 # define ERR_ARG "Nombre d'arguments invalide\n"
 # define ERR_FD "Erreur avec le descripteur de fichiers\n"
+# define ERR_BER "Erreur avec l'extension du fichier\n"
 
 /********************************************
 |	Manages the current coordinates			|
@@ -55,6 +56,8 @@ typedef struct s_map
 {
 	int		x;
 	int		y;
+	int		x_len;
+	int		y_len;
 	char	*content;
 }	t_map;
 
@@ -86,5 +89,7 @@ typedef struct s_board
 int		key_on(int key, void *param);
 void	item_on_map(t_board *bd);
 int		close_win(void);
+void	check_file(t_board *bd, char **argv);
+void	check_args(int argc);
 
 #endif

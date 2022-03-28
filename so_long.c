@@ -81,15 +81,62 @@ int	close_win(void)
 	exit(EXIT_SUCCESS);
 }
 
+void	check_args(int argc)
+{
+	if (argc != 2)
+	{
+		ft_printf(ERROR ERR_ARG);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	check_file(t_board *bd, char **argv)
+{
+	int		fd;
+	//int		cnt;
+	//int		i;
+	char	*tempura;
+	char	*gnl;
+
+	fd = open(argv[1], O_RDONLY);
+	if (fd <= 0)
+	{
+		ft_printf(ERROR ERR_FD);
+		exit(EXIT_FAILURE);
+	}
+	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
+	{
+		ft_printf(ERROR ERR_BER);
+		exit(EXIT_FAILURE);
+	}
+	bd->map.y_len = 0;
+	gnl = get_next_line(fd);
+	bd->map.content = ft_strdup("");
+	while (gnl != NULL)
+	{
+		bd->map.x_len = ft_printf("%s", gnl);
+		tempura = bd->map.content;
+		bd->map.content = ft_strjoin(bd->map.content, gnl);
+		free(tempura);
+		free(gnl);
+		gnl = get_next_line(fd);
+		bd->map.y_len++;
+	}
+	close(fd);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_board	bd;
-	int		fd;
-	char	*gnl;
-	int		cnt;
-	int		i;
-	char	*tempura;
+	//int		fd;
+	//char	*gnl;
+	//int		cnt;
+	//int		i;
+	//char	*tempura;
 
+	check_args(argc);
+	check_file(&bd, argv);
+/*
 	if (argc != 2)
 	{
 		ft_printf(ERROR ERR_ARG);
@@ -102,26 +149,35 @@ int	main(int argc, char *argv[])
 		ft_printf(ERROR ERR_FD);
 		return (EXIT_FAILURE);
 	}
+	*/
 
-	i = 0;
-	gnl = get_next_line(fd);
+	/*bd.map.y_len = 0;
+	//i = 0;
+	//gnl = get_next_line(fd);
+	gnl = get_next_line(check_file(argv));
 	bd.map.content = ft_strdup("");
 	while (gnl != NULL)
 	{
-		cnt = ft_printf("%s", gnl);
+		bd.map.x_len = ft_printf("%s", gnl);
+		//cnt = ft_printf("%s", gnl);
 		tempura = bd.map.content;
 		bd.map.content = ft_strjoin(bd.map.content, gnl);
 		free(tempura);
 		free(gnl);
-		gnl = get_next_line(fd);
-		i++;
+		//gnl = get_next_line(fd);
+		gnl = get_next_line(check_file(argv));
+		bd.map.y_len++;
+		//i++;
 	}
-	close(fd);
+	//close(fd);
+	close(check_file(argv));
+	*/
 
-	bd.h = i * IMG_PXL;
-	ft_printf("cnt : %d\n", cnt);
-	bd.w = (cnt - 1) * IMG_PXL;
-	ft_printf("i : %d\n", i);
+	bd.h = bd.map.y_len * IMG_PXL;
+	ft_printf("cnt : %d\n", bd.map.x_len);
+	//ft_printf("cnt : %d\n", cnt);
+	bd.w = (bd.map.x_len - 1) * IMG_PXL;
+	ft_printf("i : %d\n", bd.map.y_len);
 
 	bd.mlx = mlx_init();
 	bd.win = mlx_new_window(bd.mlx, bd.w, bd.h, WIN_TITLE);
