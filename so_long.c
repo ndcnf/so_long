@@ -52,24 +52,25 @@ void	pathfinder(t_board *bd, char *path)
 void	item_on_map(t_board *bd)
 {
 	static size_t	i = -1;
+	char			c;
 
 	if (!bd->map.content)
 		return ;
-
 	if (++i < ft_strlen(bd->map.content))
 	{
+		c = ft_toupper(bd->map.content[i]);
 		pathfinder(bd, IMG_GRD1);
-		if (bd->map.content[i] == '1')
+		if (c == '1')
 			pathfinder(bd, IMG_WLL2);
-		else if (bd->map.content[i] == '0')
+		else if (c == '0')
 			pathfinder(bd, IMG_GRD2);
-		else if (bd->map.content[i] == 'P')
+		else if (c == 'P')
 			pathfinder(bd, IMG_P2);
-		else if (bd->map.content[i] == 'C')
+		else if (c == 'C')
 			pathfinder(bd, IMG_C);
-		else if (bd->map.content[i] == 'E')
+		else if (c == 'E')
 			pathfinder(bd, IMG_E);
-		else if (bd->map.content[i] == '\n')
+		else if (c == '\n')
 			ft_printf("Have you returned?\n");
 		else
 			ft_printf("I don't think so, it's not valid\n");
