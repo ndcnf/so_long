@@ -13,9 +13,9 @@
 #include	"so_long.h"
 
 /********************************************
-|	Gestion des touches pressees 			|
-|	Gere w, a, s, d et ESC					|
-|	Statut : affiche juste un message		|
+|	Manage which key has been pressed		|
+|	Directions are w, a, s, d and ESC		|
+|	Statut : ESC OK, reste a gerer les directions		|
 ********************************************/
 int	key_on(int key, void *param)
 {
@@ -37,6 +37,10 @@ int	key_on(int key, void *param)
 	return (EXIT_SUCCESS);
 }
 
+/********************************************
+|	Seeks the path to the right image		|
+|	and render it on window					|
+********************************************/
 void	pathfinder(t_board *bd, char *path)
 {
 	t_sprite sprite;
@@ -84,6 +88,7 @@ int	main(int argc, char *argv[])
 	char	*gnl;
 	int		cnt;
 	int		i;
+	char	*tempura;
 
 	if (argc != 2)
 	{
@@ -104,7 +109,10 @@ int	main(int argc, char *argv[])
 	while (gnl != NULL)
 	{
 		cnt = ft_printf("%s", gnl);
+		tempura = bd.map.content;
 		bd.map.content = ft_strjoin(bd.map.content, gnl);
+		free(tempura);
+		free(gnl);
 		gnl = get_next_line(fd);
 		i++;
 	}

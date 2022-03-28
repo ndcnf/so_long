@@ -58,6 +58,9 @@ typedef struct s_map
 	char	*content;
 }	t_map;
 
+/********************************************
+|	Manages the sprites						|
+********************************************/
 typedef struct s_sprite
 {
 	int		w;
