@@ -93,8 +93,6 @@ void	check_args(int argc)
 void	check_file(t_board *bd, char **argv)
 {
 	int		fd;
-	//int		cnt;
-	//int		i;
 	char	*tempura;
 	char	*gnl;
 
@@ -128,54 +126,12 @@ void	check_file(t_board *bd, char **argv)
 int	main(int argc, char *argv[])
 {
 	t_board	bd;
-	//int		fd;
-	//char	*gnl;
-	//int		cnt;
-	//int		i;
-	//char	*tempura;
 
 	check_args(argc);
 	check_file(&bd, argv);
-/*
-	if (argc != 2)
-	{
-		ft_printf(ERROR ERR_ARG);
-		return (EXIT_FAILURE);
-	}
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd <= 0)
-	{
-		ft_printf(ERROR ERR_FD);
-		return (EXIT_FAILURE);
-	}
-	*/
-
-	/*bd.map.y_len = 0;
-	//i = 0;
-	//gnl = get_next_line(fd);
-	gnl = get_next_line(check_file(argv));
-	bd.map.content = ft_strdup("");
-	while (gnl != NULL)
-	{
-		bd.map.x_len = ft_printf("%s", gnl);
-		//cnt = ft_printf("%s", gnl);
-		tempura = bd.map.content;
-		bd.map.content = ft_strjoin(bd.map.content, gnl);
-		free(tempura);
-		free(gnl);
-		//gnl = get_next_line(fd);
-		gnl = get_next_line(check_file(argv));
-		bd.map.y_len++;
-		//i++;
-	}
-	//close(fd);
-	close(check_file(argv));
-	*/
 
 	bd.h = bd.map.y_len * IMG_PXL;
 	ft_printf("cnt : %d\n", bd.map.x_len);
-	//ft_printf("cnt : %d\n", cnt);
 	bd.w = (bd.map.x_len - 1) * IMG_PXL;
 	ft_printf("i : %d\n", bd.map.y_len);
 
