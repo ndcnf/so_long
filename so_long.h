@@ -46,8 +46,7 @@
 
 # define ERROR "Error\n"
 # define ERR_ARG "Nombre d'arguments invalide\n"
-# define ERR_FD "Erreur avec le descripteur de fichiers\n"
-# define ERR_BER "Erreur avec l'extension du fichier\n"
+# define ERR_FILE "Erreur avec le fichier\n"
 
 /********************************************
 |	Manages the current coordinates			|

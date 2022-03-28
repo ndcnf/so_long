@@ -99,12 +99,12 @@ void	check_file(t_board *bd, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd <= 0)
 	{
-		ft_printf(ERROR ERR_FD);
+		ft_printf(ERROR ERR_FILE);
 		exit(EXIT_FAILURE);
 	}
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 	{
-		ft_printf(ERROR ERR_BER);
+		ft_printf(ERROR ERR_FILE);
 		exit(EXIT_FAILURE);
 	}
 	bd->map.y_len = 0;
