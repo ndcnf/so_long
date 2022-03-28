@@ -47,6 +47,7 @@
 # define ERROR "Error\n"
 # define ERR_ARG "Nombre d'arguments invalide\n"
 # define ERR_FILE "Erreur avec le fichier\n"
+# define ERR_ITEM "La carte contient un ou plusieurs item(s) invalide(s)\n"
 
 /********************************************
 |	Manages the current coordinates			|

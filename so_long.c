@@ -71,9 +71,12 @@ void	item_on_map(t_board *bd)
 		else if (c == 'E')
 			pathfinder(bd, IMG_E);
 		else if (c == '\n')
-			ft_printf("Have you returned?\n");
+			;
 		else
-			ft_printf("I don't think so, it's not valid\n");
+		{
+			ft_printf(ERROR ERR_ITEM);
+			exit(EXIT_FAILURE);
+		}
 	}
 }
 
