@@ -48,6 +48,7 @@
 # define ERR_ARG "Nombre d'arguments invalide\n"
 # define ERR_FILE "Erreur avec le fichier\n"
 # define ERR_ITEM "La carte contient un ou plusieurs item(s) invalide(s)\n"
+# define ERR_SHP "La forme de la carte est invalide\n"
 
 /********************************************
 |	Manages the current coordinates			|
@@ -91,5 +92,6 @@ void	item_on_map(t_board *bd);
 int		close_win(void);
 void	check_file(t_board *bd, char **argv);
 void	check_args(int argc);
+void	errorminator(char *s);
 
 #endif

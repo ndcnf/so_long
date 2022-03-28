@@ -73,10 +73,7 @@ void	item_on_map(t_board *bd)
 		else if (c == '\n')
 			;
 		else
-		{
-			ft_printf(ERROR ERR_ITEM);
-			exit(EXIT_FAILURE);
-		}
+			errorminator(ERR_ITEM);
 	}
 }
 
@@ -88,10 +85,14 @@ int	close_win(void)
 void	check_args(int argc)
 {
 	if (argc != 2)
-	{
-		ft_printf(ERROR ERR_ARG);
-		exit(EXIT_FAILURE);
-	}
+		errorminator(ERR_ARG);
+}
+
+void	errorminator(char *s)
+{
+	ft_printf(ERROR);
+	ft_printf(s);
+	exit(EXIT_FAILURE);
 }
 
 void	check_file(t_board *bd, char **argv)
@@ -102,20 +103,16 @@ void	check_file(t_board *bd, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd <= 0)
-	{
-		ft_printf(ERROR ERR_FILE);
-		exit(EXIT_FAILURE);
-	}
+		errorminator(ERR_FILE);
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
-	{
-		ft_printf(ERROR ERR_FILE);
-		exit(EXIT_FAILURE);
-	}
+		errorminator(ERR_FILE);
 	bd->map.y_len = 0;
 	gnl = get_next_line(fd);
 	bd->map.content = ft_strdup("");
 	while (gnl != NULL)
 	{
+		if (bd->map.x_len && bd->map.x_len != ft_printf("%s", gnl))
+			errorminator(ERR_SHP);
 		bd->map.x_len = ft_printf("%s", gnl);
 		tempura = bd->map.content;
 		bd->map.content = ft_strjoin(bd->map.content, gnl);
