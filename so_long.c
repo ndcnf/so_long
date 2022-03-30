@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/25 17:12:27 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:08:31 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	item_on_map(t_board *bd)
 		else if (c == 'C')
 			pathfinder(bd, IMG_C);
 		else if (c == 'E')
-			pathfinder(bd, IMG_E);
+			pathfinder(bd, IMG_E1);
 		else if (c == '\n')
 			;
 		else

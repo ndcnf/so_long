@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/25 17:08:15 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:08:34 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@
 
 # define IMG_P1 "./sprites/blob01.xpm"
 # define IMG_P2 "./sprites/jumino.xpm"
-# define IMG_E "./sprites/heart00.xpm"
+# define IMG_E1 "./sprites/heart_locked.xpm"
+# define IMG_E2 "./sprites/heart_unlocked.xpm"
 # define IMG_C "./sprites/fruit00.xpm"
 # define IMG_WLL1 "./sprites/shrub00.xpm"
 # define IMG_WLL2 "./sprites/shrub01.xpm"
