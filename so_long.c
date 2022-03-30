@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/30 14:53:35 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:06:31 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	key_on(int key, void *param)
 ********************************************/
 void	pathfinder(t_board *bd, char *path)
 {
-	t_sprite sprite;
+	t_sprite	sprite;
 
 	sprite.img = mlx_xpm_file_to_image(bd->mlx, path, &sprite.w, &sprite.h);
 	mlx_put_image_to_window(bd->mlx, bd->win, sprite.img, bd->map.x, bd->map.y);
@@ -55,12 +55,18 @@ void	check_items(t_board *bd)
 		errorminator(ERR_COLL);
 	if (bd->itm.e != 1)
 		errorminator(ERR_EXIT);
-	/*if (bd->itm.one )
-		errorminator(ERR_WLL);*/
 	if (bd->itm.zero <= 0)
 		errorminator(ERR_GRD);
 	if (bd->itm.p != 1)
 		errorminator(ERR_PLYR);
+}
+
+// verifier que la carte est entouree de murs.
+// peut-etre voir apres la gestion des deplacements pour une meilleure idee
+void	check_walls(t_board *bd)
+{
+	if (!bd->itm.one)
+		errorminator(ERR_WLL);
 }
 
 void	item_on_map(t_board *bd)
@@ -78,31 +84,26 @@ void	item_on_map(t_board *bd)
 		{
 			pathfinder(bd, IMG_WLL2);
 			bd->itm.one++;
-			ft_printf("murs:%d\n", bd->itm.one);
 		}
 		else if (c == '0')
 		{
 			pathfinder(bd, IMG_GRD2);
 			bd->itm.zero++;
-			ft_printf("sols:%d\n", bd->itm.zero);
 		}
 		else if (c == 'P')
 		{
 			pathfinder(bd, IMG_P2);
 			bd->itm.p++;
-			ft_printf("joueur:%d\n", bd->itm.p);
 		}
 		else if (c == 'C')
 		{
 			pathfinder(bd, IMG_C);
 			bd->itm.c++;
-			ft_printf("collectibles:%d\n", bd->itm.c);
 		}
 		else if (c == 'E')
 		{
 			pathfinder(bd, IMG_E1);
 			bd->itm.e++;
-			ft_printf("sortie:%d\n", bd->itm.e);
 		}
 		else if (c == '\n')
 			;

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/30 14:29:00 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:05:20 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define KEY_ESC 53
 # define X_BTN 17
 
-# define WIN_TITLE "The Untold Legend of Diana And the Evil Shrubs (working title)"
+# define WIN_TITLE "The Untold Legend of Diana And the Evil Shrubs"
 # define WIN_H 512
 # define WIN_W 512
 # define IMG_PXL 32 //vraiment utile ou redondant ?
@@ -103,8 +103,6 @@ typedef struct s_board
 	int			h;
 }	t_board;
 
-
-
 int		key_on(int key, void *param);
 void	item_on_map(t_board *bd);
 int		close_win(void);
@@ -113,5 +111,6 @@ void	check_args(int argc);
 void	check_items(t_board *bd);
 void	errorminator(char *s);
 void	init_items(t_board *bd);
+void	check_walls(t_board *bd);
 
 #endif
