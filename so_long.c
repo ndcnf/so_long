@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/30 12:08:31 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/30 12:16:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,17 @@ void	check_file(t_board *bd, char **argv)
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 		errorminator(ERR_FILE);
 	bd->map.y_len = 0;
+	bd->map.x_len = 0;
 	gnl = get_next_line(fd);
 	bd->map.content = ft_strdup("");
 	while (gnl != NULL)
 	{
 		if (bd->map.x_len && bd->map.x_len != ft_printf("%s", gnl))
+		{
+			ft_printf("xlen = %d\n", bd->map.x_len);
+			ft_printf("printgnl = %d\n", ft_printf("%s", gnl));
 			errorminator(ERR_SHP);
+		}
 		bd->map.x_len = ft_printf("%s", gnl);
 		tempura = bd->map.content;
 		bd->map.content = ft_strjoin(bd->map.content, gnl);
