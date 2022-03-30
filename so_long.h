@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/30 12:08:34 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:29:00 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@
 # define ERR_FILE "Erreur avec le fichier\n"
 # define ERR_ITEM "La carte contient un ou plusieurs item(s) invalide(s)\n"
 # define ERR_SHP "La forme de la carte est invalide\n"
+# define ERR_PLYR "La carte doit comporter un joueur obligatoirement\n"
+# define ERR_COLL "La carte doit comporter au moins un objet a collectionner\n"
+# define ERR_EXIT "La carte doit comporter une sortie obligatoirement\n"
+# define ERR_WLL "La carte doit etre entouree de murs\n"
+# define ERR_GRD "La carte doit comporter au moins un sol\n"
 
 /********************************************
 |	Manages the current coordinates			|
@@ -73,6 +78,15 @@ typedef struct s_sprite
 	void	*img;
 }	t_sprite;
 
+typedef struct s_items
+{
+	int	p;
+	int	e;
+	int	one;
+	int	zero;
+	int	c;
+}	t_items;
+
 /********************************************
 |	Manages the game board					|
 |	Includes the map and sprites structures	|
@@ -81,6 +95,7 @@ typedef struct s_board
 {
 	t_map		map;
 	t_sprite	spr;
+	t_items		itm;
 	void		*mlx;
 	void		*img;
 	void		*win;
@@ -88,11 +103,15 @@ typedef struct s_board
 	int			h;
 }	t_board;
 
+
+
 int		key_on(int key, void *param);
 void	item_on_map(t_board *bd);
 int		close_win(void);
 void	check_file(t_board *bd, char **argv);
 void	check_args(int argc);
+void	check_items(t_board *bd);
 void	errorminator(char *s);
+void	init_items(t_board *bd);
 
 #endif

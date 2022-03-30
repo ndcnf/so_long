@@ -6,10 +6,17 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:36:28 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/24 16:59:49 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:15:38 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
+void	init_items(t_board *bd)
+{
+	bd->itm.p = 0;
+	bd->itm.e = 0;
+	bd->itm.one = 0;
+	bd->itm.zero = 0;
+	bd->itm.c = 0;
+}

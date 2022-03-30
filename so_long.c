@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/30 12:16:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:53:35 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ void	pathfinder(t_board *bd, char *path)
 	mlx_put_image_to_window(bd->mlx, bd->win, sprite.img, bd->map.x, bd->map.y);
 }
 
+void	check_items(t_board *bd)
+{
+	if (bd->itm.c <= 0)
+		errorminator(ERR_COLL);
+	if (bd->itm.e != 1)
+		errorminator(ERR_EXIT);
+	/*if (bd->itm.one )
+		errorminator(ERR_WLL);*/
+	if (bd->itm.zero <= 0)
+		errorminator(ERR_GRD);
+	if (bd->itm.p != 1)
+		errorminator(ERR_PLYR);
+}
+
 void	item_on_map(t_board *bd)
 {
 	static size_t	i = -1;
@@ -61,15 +75,35 @@ void	item_on_map(t_board *bd)
 		c = ft_toupper(bd->map.content[i]);
 		pathfinder(bd, IMG_GRD1);
 		if (c == '1')
+		{
 			pathfinder(bd, IMG_WLL2);
+			bd->itm.one++;
+			ft_printf("murs:%d\n", bd->itm.one);
+		}
 		else if (c == '0')
+		{
 			pathfinder(bd, IMG_GRD2);
+			bd->itm.zero++;
+			ft_printf("sols:%d\n", bd->itm.zero);
+		}
 		else if (c == 'P')
+		{
 			pathfinder(bd, IMG_P2);
+			bd->itm.p++;
+			ft_printf("joueur:%d\n", bd->itm.p);
+		}
 		else if (c == 'C')
+		{
 			pathfinder(bd, IMG_C);
+			bd->itm.c++;
+			ft_printf("collectibles:%d\n", bd->itm.c);
+		}
 		else if (c == 'E')
+		{
 			pathfinder(bd, IMG_E1);
+			bd->itm.e++;
+			ft_printf("sortie:%d\n", bd->itm.e);
+		}
 		else if (c == '\n')
 			;
 		else
@@ -113,11 +147,7 @@ void	check_file(t_board *bd, char **argv)
 	while (gnl != NULL)
 	{
 		if (bd->map.x_len && bd->map.x_len != ft_printf("%s", gnl))
-		{
-			ft_printf("xlen = %d\n", bd->map.x_len);
-			ft_printf("printgnl = %d\n", ft_printf("%s", gnl));
 			errorminator(ERR_SHP);
-		}
 		bd->map.x_len = ft_printf("%s", gnl);
 		tempura = bd->map.content;
 		bd->map.content = ft_strjoin(bd->map.content, gnl);
@@ -135,6 +165,7 @@ int	main(int argc, char *argv[])
 
 	check_args(argc);
 	check_file(&bd, argv);
+	init_items(&bd);
 
 	bd.h = bd.map.y_len * IMG_PXL;
 	ft_printf("cnt : %d\n", bd.map.x_len);
@@ -157,7 +188,7 @@ int	main(int argc, char *argv[])
 		bd.map.y += IMG_PXL;
 		bd.map.x = 0;
 	}
-
+	check_items(&bd);
 	mlx_key_hook(bd.win, key_on, &bd.win); // gere les entrees des touches
 	mlx_hook(bd.win, X_BTN, 0, close_win, &bd);
 	mlx_loop(bd.mlx); //permet de boucler
