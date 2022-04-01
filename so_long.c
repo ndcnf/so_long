@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/30 15:06:31 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/01 10:16:50 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,6 @@ void	pathfinder(t_board *bd, char *path)
 
 	sprite.img = mlx_xpm_file_to_image(bd->mlx, path, &sprite.w, &sprite.h);
 	mlx_put_image_to_window(bd->mlx, bd->win, sprite.img, bd->map.x, bd->map.y);
-}
-
-void	check_items(t_board *bd)
-{
-	if (bd->itm.c <= 0)
-		errorminator(ERR_COLL);
-	if (bd->itm.e != 1)
-		errorminator(ERR_EXIT);
-	if (bd->itm.zero <= 0)
-		errorminator(ERR_GRD);
-	if (bd->itm.p != 1)
-		errorminator(ERR_PLYR);
-}
-
-// verifier que la carte est entouree de murs.
-// peut-etre voir apres la gestion des deplacements pour une meilleure idee
-void	check_walls(t_board *bd)
-{
-	if (!bd->itm.one)
-		errorminator(ERR_WLL);
 }
 
 void	item_on_map(t_board *bd)
@@ -115,19 +95,6 @@ void	item_on_map(t_board *bd)
 int	close_win(void)
 {
 	exit(EXIT_SUCCESS);
-}
-
-void	check_args(int argc)
-{
-	if (argc != 2)
-		errorminator(ERR_ARG);
-}
-
-void	errorminator(char *s)
-{
-	ft_printf(ERROR);
-	ft_printf(s);
-	exit(EXIT_FAILURE);
 }
 
 void	check_file(t_board *bd, char **argv)
