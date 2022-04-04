@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 15:43:45 by nchennaf          #+#    #+#              #
-#    Updated: 2022/04/01 10:19:20 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/04/04 20:37:30 by Nadia            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,10 @@ FLAGS =	-Wall -Wextra -Werror -g #-fsanitize=address
 NAME =	so_long
 AR =	ar rcs
 SRC =	so_long.c \
-		so_long_init.c \
-		errors.c
+		init.c \
+		errors.c \
+		main.c \
+		moves.c
 DIR_FTPRINTF = ./ft_printf/
 LIB_FTPRINTF = ftprintf
 DIR_LIBFT = ./libft/

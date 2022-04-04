@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/30 15:05:20 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:33:02 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ typedef struct s_sprite
 	void	*img;
 }	t_sprite;
 
+/********************************************
+|	Counts every item on the map			|
+********************************************/
 typedef struct s_items
 {
 	int	p;
@@ -87,15 +90,22 @@ typedef struct s_items
 	int	c;
 }	t_items;
 
+typedef struct s_player
+{
+	int	steps;
+	int	x;
+	int	y;
+}	t_player;
+
 /********************************************
 |	Manages the game board					|
-|	Includes the map and sprites structures	|
 ********************************************/
 typedef struct s_board
 {
 	t_map		map;
 	t_sprite	spr;
 	t_items		itm;
+	t_player	p1;
 	void		*mlx;
 	void		*img;
 	void		*win;
@@ -112,5 +122,6 @@ void	check_items(t_board *bd);
 void	errorminator(char *s);
 void	init_items(t_board *bd);
 void	check_walls(t_board *bd);
+void	move_up(t_board *bd);
 
 #endif

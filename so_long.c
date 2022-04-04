@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/04 17:32:34 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:35:14 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int	key_on(int key, void *param)
 	if (key == KEY_ESC)
 		close_win();
 	else if (key == KEY_W || key == KEY_UP)
+	{
+		//ici l'appel de fonction pour monter
+		//move_up(bd);	
 		ft_printf("Up");
+	}
 	else if (key == KEY_A || key == KEY_LFT)
 		ft_printf("Left");
 	else if (key == KEY_S || key == KEY_DWN)
@@ -74,6 +78,8 @@ void	item_on_map(t_board *bd)
 		{
 			pathfinder(bd, IMG_P2);
 			bd->itm.p++;
+			bd->p1.x = bd->map.x;
+			bd->p1.y = bd->map.y;
 		}
 		else if (c == 'C')
 		{
@@ -126,41 +132,4 @@ void	check_file(t_board *bd, char **argv)
 	}
 	close(fd);
 	ft_printf("map.content :\n\n%s\n", bd->map.content);
-}
-
-int	main(int argc, char *argv[])
-{
-	t_board	bd;
-
-	check_args(argc);
-	check_file(&bd, argv);
-	init_items(&bd);
-
-	bd.h = bd.map.y_len * IMG_PXL;
-	ft_printf("cnt : %d\n", bd.map.x_len);
-	bd.w = (bd.map.x_len - 1) * IMG_PXL;
-	ft_printf("i : %d\n", bd.map.y_len);
-
-	bd.mlx = mlx_init();
-	bd.win = mlx_new_window(bd.mlx, bd.w, bd.h, WIN_TITLE);
-
-	bd.map.x = 0;
-	bd.map.y = 0;
-
-	while (bd.map.y <= bd.h)
-	{
-		while (bd.map.x <= bd.w)
-		{
-			item_on_map(&bd);
-			bd.map.x += IMG_PXL;
-		}
-		bd.map.y += IMG_PXL;
-		bd.map.x = 0;
-	}
-	check_items(&bd);
-	mlx_key_hook(bd.win, key_on, &bd.win); // gere les entrees des touches
-	mlx_hook(bd.win, X_BTN, 0, close_win, &bd);
-	mlx_loop(bd.mlx); //permet de boucler
-
-	return (EXIT_SUCCESS);
 }

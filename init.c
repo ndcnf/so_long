@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:36:28 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/03/30 14:15:38 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:26:53 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void	init_items(t_board *bd)
 	bd->itm.one = 0;
 	bd->itm.zero = 0;
 	bd->itm.c = 0;
+	bd->p1.steps = 0;
 }
