@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/01 10:16:50 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/04 17:32:34 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	check_file(t_board *bd, char **argv)
 		bd->map.y_len++;
 	}
 	close(fd);
+	ft_printf("map.content :\n\n%s\n", bd->map.content);
 }
 
 int	main(int argc, char *argv[])
