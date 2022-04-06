@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 10:13:24 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/04 17:35:05 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:03:01 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	errorminator(char *s)
 
 void	check_items(t_board *bd)
 {
-	if (bd->itm.c <= 0)
+	if (bd->itm->c <= 0)
 		errorminator(ERR_COLL);
-	if (bd->itm.e != 1)
+	if (bd->itm->e != 1)
 		errorminator(ERR_EXIT);
-	if (bd->itm.zero <= 0)
+	if (bd->itm->zero <= 0)
 		errorminator(ERR_GRD);
-	if (bd->itm.p != 1)
+	if (bd->itm->p != 1)
 		errorminator(ERR_PLYR);
 	//check_walls(bd);
 }
@@ -40,26 +40,26 @@ void	check_walls(t_board *bd)
 	int	i;
 
 	i = 0;
-	ft_printf("check AVANT itm.one : %d\n", bd->itm.one);
-	ft_printf("check AVANT map.content[i] : %c - i : %d\n", bd->map.content[i], i);
-	if (!bd->itm.one)
+	ft_printf("check AVANT itm.one : %d\n", bd->itm->one);
+	ft_printf("check AVANT map.content[i] : %c - i : %d\n", bd->map->content[i], i);
+	if (!bd->itm->one)
 		errorminator(ERR_WLL);
-	while (bd->map.content[i] != '\n')
-		if (bd->map.content[i] != '1')
+	while (bd->map->content[i] != '\n')
+		if (bd->map->content[i] != '1')
 		{
-			ft_printf("debut : %c\n", bd->map.content[i]);
+			ft_printf("debut : %c\n", bd->map->content[i]);
 			errorminator(ERR_WLL);
 		}
-		ft_printf("debut HB : %c\n", bd->map.content[i]);
+		ft_printf("debut HB : %c\n", bd->map->content[i]);
 		i++;
-	i = bd->map.x_len;
-	while (bd->map.content[i--] != '\n')
-		if (bd->map.content[i] != '1')
+	i = bd->map->x_len;
+	while (bd->map->content[i--] != '\n')
+		if (bd->map->content[i] != '1')
 		{
-			ft_printf("fin : %c\n", bd->map.content[i]);
+			ft_printf("fin : %c\n", bd->map->content[i]);
 			errorminator(ERR_WLL);
 		}
-		ft_printf("fin HB : %c\n", bd->map.content[i]);
+		ft_printf("fin HB : %c\n", bd->map->content[i]);
 }
 
 void	check_args(int argc)

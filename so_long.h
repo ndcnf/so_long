@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/06 12:06:18 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/06 18:24:16 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 # define WIN_TITLE "The Untold Legend of Diana And the Evil Shrubs"
 # define WIN_H 512
 # define WIN_W 512
-# define IMG_PXL 32 //vraiment utile ou redondant ?
+# define IMG_PXL 32
 
-# define IMG_P1 "./sprites/blob01.xpm"
+# define IMG_P1 "./sprites/blob01.xpm" //pas le bon format, attention !
 # define IMG_P2 "./sprites/jumino.xpm"
 # define IMG_E1 "./sprites/heart_locked.xpm"
 # define IMG_E2 "./sprites/heart_unlocked.xpm"
@@ -102,10 +102,10 @@ typedef struct s_player
 ********************************************/
 typedef struct s_board
 {
-	t_map		map;
-	t_sprite	spr;
-	t_items		itm;
-	t_player	p1;
+	t_map		*map;
+	t_sprite	*spr;
+	t_items		*itm;
+	t_player	*p1;
 	void		*mlx;
 	void		*img;
 	void		*win;
@@ -113,7 +113,8 @@ typedef struct s_board
 	int			h;
 }	t_board;
 
-int		key_on(int key, void *param);
+int		key_on(int key, t_board *bd);
+void	allowance(t_board *bd);
 void	item_on_map(t_board *bd);
 int		close_win(void);
 void	check_file(t_board *bd, char **argv);
@@ -123,6 +124,10 @@ void	errorminator(char *s);
 void	init_items(t_board *bd);
 void	init_map(t_board *bd);
 void	check_walls(t_board *bd);
+void	read_map(t_board *bd);
 void	move_up(t_board *bd);
+void	move_down(t_board *bd);
+void	move_left(t_board *bd);
+void	move_right(t_board *bd);
 
 #endif
