@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/04 20:33:02 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/06 12:06:18 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void	check_args(int argc);
 void	check_items(t_board *bd);
 void	errorminator(char *s);
 void	init_items(t_board *bd);
+void	init_map(t_board *bd);
 void	check_walls(t_board *bd);
 void	move_up(t_board *bd);
 

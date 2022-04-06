@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 20:34:13 by Nadia             #+#    #+#             */
-/*   Updated: 2022/04/04 20:34:34 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/06 12:58:56 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"so_long.h"
-
-//MODIFIER LE HEADER !!!!
 
 int	main(int argc, char *argv[])
 {
@@ -21,17 +19,7 @@ int	main(int argc, char *argv[])
 	check_args(argc);
 	check_file(&bd, argv);
 	init_items(&bd);
-
-	bd.h = bd.map.y_len * IMG_PXL;
-	ft_printf("cnt : %d\n", bd.map.x_len);
-	bd.w = (bd.map.x_len - 1) * IMG_PXL;
-	ft_printf("i : %d\n", bd.map.y_len);
-
-	bd.mlx = mlx_init();
-	bd.win = mlx_new_window(bd.mlx, bd.w, bd.h, WIN_TITLE);
-
-	bd.map.x = 0;
-	bd.map.y = 0;
+	init_map(&bd);
 
 	while (bd.map.y <= bd.h)
 	{

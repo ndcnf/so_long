@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/04 20:35:14 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/06 13:01:34 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	key_on(int key, void *param)
 	else if (key == KEY_W || key == KEY_UP)
 	{
 		//ici l'appel de fonction pour monter
-		//move_up(bd);	
+		//move_up(bd);
 		ft_printf("Up");
 	}
 	else if (key == KEY_A || key == KEY_LFT)
