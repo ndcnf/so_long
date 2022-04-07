@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/06 18:38:41 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:25:24 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,15 @@ int	key_on(int key, t_board *bd)
 	if (key == KEY_ESC)
 		close_win();
 	else if (key == KEY_W || key == KEY_UP)
-		move_up(bd);
+		move(bd, KEY_UP);
 	else if (key == KEY_A || key == KEY_LFT)
-		move_left(bd);
+		move(bd, KEY_LFT);
 	else if (key == KEY_S || key == KEY_DWN)
-		move_down(bd);
+		move(bd, KEY_DWN);
 	else if (key == KEY_D || key == KEY_RGT)
-		move_right(bd);
+		move(bd, KEY_RGT);
 	else
-		ft_printf("I don't understand this direction!");
-	ft_printf("\n");
+		;
 	return (EXIT_SUCCESS);
 }
 
@@ -39,10 +38,10 @@ int	key_on(int key, t_board *bd)
 |	Seeks the path to the right image		|
 |	and render it on window					|
 ********************************************/
-void	pathfinder(t_board *bd, char *path)
+void	pathfinder(t_board *bd, char *path, int x, int y)
 {
 	bd->spr->img = mlx_xpm_file_to_image(bd->mlx, path, &bd->spr->w, &bd->spr->h);
-	mlx_put_image_to_window(bd->mlx, bd->win, bd->spr->img, bd->map->x, bd->map->y);
+	mlx_put_image_to_window(bd->mlx, bd->win, bd->spr->img, x, y);
 }
 
 void	item_on_map(t_board *bd)
@@ -55,34 +54,32 @@ void	item_on_map(t_board *bd)
 	if (++i < ft_strlen(bd->map->content))
 	{
 		c = ft_toupper(bd->map->content[i]);
-		pathfinder(bd, IMG_GRD1);
+		pathfinder(bd, IMG_GRD1, bd->map->x, bd->map->y);
 		if (c == '1')
 		{
-			pathfinder(bd, IMG_WLL2);
+			pathfinder(bd, IMG_WLL2, bd->map->x, bd->map->y);
 			bd->itm->one++;
 		}
 		else if (c == '0')
 		{
-			pathfinder(bd, IMG_GRD1);
+			pathfinder(bd, IMG_GRD1, bd->map->x, bd->map->y);
 			bd->itm->zero++;
 		}
 		else if (c == 'P')
 		{
-			pathfinder(bd, IMG_P2);
+			pathfinder(bd, IMG_P2, bd->map->x, bd->map->y);
 			bd->itm->p++;
-			ft_printf("player bfr: (%d;%d)\n", bd->p1->x, bd->p1->y);
-			bd->p1->x = bd->map->x; //situation du player OK
-			bd->p1->y = bd->map->y; //situation du player OK
-			ft_printf("player now: (%d;%d)\n", bd->p1->x, bd->p1->y);
+			bd->p1->x = bd->map->x;
+			bd->p1->y = bd->map->y;
 		}
 		else if (c == 'C')
 		{
-			pathfinder(bd, IMG_C);
+			pathfinder(bd, IMG_C, bd->map->x, bd->map->y);
 			bd->itm->c++;
 		}
 		else if (c == 'E')
 		{
-			pathfinder(bd, IMG_E1);
+			pathfinder(bd, IMG_E1, bd->map->x, bd->map->y);
 			bd->itm->e++;
 		}
 		else if (c == '\n')

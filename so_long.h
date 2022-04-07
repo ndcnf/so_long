@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/06 18:24:16 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/07 11:24:13 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define ERR_EXIT "La carte doit comporter une sortie obligatoirement\n"
 # define ERR_WLL "La carte doit etre entouree de murs\n"
 # define ERR_GRD "La carte doit comporter au moins un sol\n"
+# define ERR_WTF "Cette erreur ne devrait meme pas exister\n"
 
 /********************************************
 |	Manages the current coordinates			|
@@ -114,6 +115,7 @@ typedef struct s_board
 }	t_board;
 
 int		key_on(int key, t_board *bd);
+void	pathfinder(t_board *bd, char *path, int x, int y);
 void	allowance(t_board *bd);
 void	item_on_map(t_board *bd);
 int		close_win(void);
@@ -125,9 +127,6 @@ void	init_items(t_board *bd);
 void	init_map(t_board *bd);
 void	check_walls(t_board *bd);
 void	read_map(t_board *bd);
-void	move_up(t_board *bd);
-void	move_down(t_board *bd);
-void	move_left(t_board *bd);
-void	move_right(t_board *bd);
+void	move(t_board *bd, int direction);
 
 #endif
