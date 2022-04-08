@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:36:28 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 19:22:15 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/08 23:22:02 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,9 @@ void	init_items(t_board *bd)
 void	init_map(t_board *bd)
 {
 	bd->h = bd->map.y_len * IMG_PXL;
-	ft_printf("cnt : %d\n", bd->map.x_len);
 	bd->w = (bd->map.x_len - 1) * IMG_PXL;
-	ft_printf("i : %d\n", bd->map.y_len);
 	bd->mlx = mlx_init();
-
 	bd->win = mlx_new_window(bd->mlx, bd->w, bd->h, WIN_TITLE);
-
 	bd->map.x = 0;
 	bd->map.y = 0;
 }
@@ -61,7 +57,6 @@ void	read_map(t_board *bd)
 
 void	wololo(t_board *bd)
 {
-
 	char	**new_map;
 	int		x;
 	int		y;
@@ -81,13 +76,10 @@ void	wololo(t_board *bd)
 		while(x < (bd->map.x_len - 1))
 		{
 			new_map[y][x++] = bd->map.content[i];
-			ft_printf("%c", bd->map.content[i]);
 			i++;
 		}
-		ft_printf("\n");
 		i++;
 		y++;
 	}
 	bd->map.map2d = new_map;
-	//ft_printf("map 2d %c [%d][%d]\n", bd->map.map2d[bd->p1->cd_y][bd->p1->cd_x], bd->p1->cd_x, bd->p1->cd_y);
 }

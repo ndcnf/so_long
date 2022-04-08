@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 20:13:48 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/08 23:32:34 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /********************************************
 |	Manage which key has been pressed		|
 |	Directions are w, a, s, d and ESC		|
-|	Statut : ESC OK, reste a gerer les directions		|
 ********************************************/
 int	key_on(int key, t_board *bd)
 {
@@ -95,7 +94,7 @@ void	item_on_map(t_board *bd)
 
 int	close_win(void)
 {
-	ft_printf("So long!\n(and thanks for all the fish!)\n");
+	ft_printf(BYE);
 	exit(EXIT_SUCCESS);
 }
 
@@ -127,7 +126,6 @@ void	check_file(t_board *bd, char **argv)
 		bd->map.y_len++;
 	}
 	close(fd);
-	ft_printf("map.content :\n\n%s\n", bd->map.content);
 }
 
 

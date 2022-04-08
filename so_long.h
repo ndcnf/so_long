@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 20:10:07 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/08 23:39:54 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@
 # define ERR_WLL "La carte doit etre entouree de murs\n"
 # define ERR_GRD "La carte doit comporter au moins un sol\n"
 # define ERR_WTF "Cette erreur ne devrait meme pas exister\n"
+
+# define BYE "So long!\n(and thanks for all the fish!)\n"
 
 /********************************************
 |	Manages the current coordinates			|

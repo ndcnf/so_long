@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 10:13:24 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 16:25:41 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/08 23:20:30 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,32 @@ void	check_items(t_board *bd)
 		errorminator(ERR_GRD);
 	if (bd->itm->p != 1)
 		errorminator(ERR_PLYR);
-//	check_walls(bd);
 }
 
-// verifier que la carte est entouree de murs.
-// peut-etre voir apres la gestion des deplacements pour une meilleure idee
-// ne fonctionne actuellement pas. Lance le jeu en arriere plan, sans afficher. Boucle infinie et/ou mauvaises conditions
 void	check_walls(t_board *bd)
 {
 	int	i;
+	int	wall_cnt;
+	int	real_cnt;
 
-	i = 0;
-	ft_printf("check AVANT itm.one : %d\n", bd->itm->one);
-	ft_printf("check AVANT map.content[i] : %c - i : %d\n", bd->map.content[i], i);
+	i = -1;
+	real_cnt = 0;
+	wall_cnt = (bd->map.x_len - 1 + bd->map.y_len - 1) * 2;
 	if (!bd->itm->one)
 		errorminator(ERR_WLL);
-	while (bd->map.content[i] != '\n')
-		if (bd->map.content[i] != '1')
-		{
-			ft_printf("debut : %c\n", bd->map.content[i]);
-			errorminator(ERR_WLL);
-		}
-		ft_printf("debut HB : %c\n", bd->map.content[i]);
-		i++;
-	i = bd->map.x_len;
-	while (bd->map.content[i--] != '\n')
-		if (bd->map.content[i] != '1')
-		{
-			ft_printf("fin : %c\n", bd->map.content[i]);
-			errorminator(ERR_WLL);
-		}
-		ft_printf("fin HB : %c\n", bd->map.content[i]);
+	while (bd->map.map2d[0][++i] == '1')
+		real_cnt++;
+	i = -1;
+	while (bd->map.map2d[bd->map.y_len - 1][++i] == '1')
+		real_cnt++;	
+	i = -1;
+	while (bd->map.map2d[++i][0] == '1' && i < bd->map.y_len - 1)
+		real_cnt++;
+	i = -1;
+	while (bd->map.map2d[++i][bd->map.x_len - 2] == '1' && i < bd->map.y_len - 1)
+		real_cnt++;
+	if (wall_cnt != real_cnt)
+		errorminator(ERR_WLL);
 }
 
 void	check_args(int argc)
