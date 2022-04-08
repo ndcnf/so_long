@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 19:19:27 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/08 20:13:48 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	item_on_map(t_board *bd)
 		{
 			pathfinder(bd, IMG_E1, bd->map.x, bd->map.y);
 			bd->itm->e++;
+			bd->itm->x_e = bd->map.x;
+			bd->itm->y_e = bd->map.y;
 		}
 		else if (c == '\n')
 			;

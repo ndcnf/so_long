@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 19:39:12 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/08 20:10:07 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct s_items
 	int	one;
 	int	zero;
 	int	c;
+	int x_e;
+	int y_e;
 }	t_items;
 
 typedef struct s_player
