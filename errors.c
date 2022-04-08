@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 10:13:24 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/06 16:03:01 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:50:10 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_items(t_board *bd)
 		errorminator(ERR_GRD);
 	if (bd->itm->p != 1)
 		errorminator(ERR_PLYR);
-	//check_walls(bd);
+//	check_walls(bd);
 }
 
 // verifier que la carte est entouree de murs.

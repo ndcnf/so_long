@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/07 11:24:13 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/08 15:03:53 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define WIN_W 512
 # define IMG_PXL 32
 
-# define IMG_P1 "./sprites/blob01.xpm" //pas le bon format, attention !
-# define IMG_P2 "./sprites/jumino.xpm"
+# define IMG_P2 "./sprites/blob01.xpm" //pas le bon format, attention !
+# define IMG_P1 "./sprites/jumino.xpm"
 # define IMG_E1 "./sprites/heart_locked.xpm"
 # define IMG_E2 "./sprites/heart_unlocked.xpm"
 # define IMG_C "./sprites/fruit00.xpm"
@@ -66,7 +66,10 @@ typedef struct s_map
 	int		y;
 	int		x_len;
 	int		y_len;
+	int		cd_x;
+	int		cd_y;
 	char	*content;
+	char	**map2d;
 }	t_map;
 
 /********************************************
@@ -96,6 +99,8 @@ typedef struct s_player
 	int	steps;
 	int	x;
 	int	y;
+	int	cd_x;
+	int	cd_y;
 }	t_player;
 
 /********************************************
@@ -128,5 +133,7 @@ void	init_map(t_board *bd);
 void	check_walls(t_board *bd);
 void	read_map(t_board *bd);
 void	move(t_board *bd, int direction);
+int		check_move(t_board *bd, int move);
+void	wololo(t_board *bd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:36:28 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/06 17:20:17 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/08 15:22:20 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	init_items(t_board *bd)
 
 void	init_map(t_board *bd)
 {
-	//allowance(bd);
 	bd->h = bd->map->y_len * IMG_PXL;
 	ft_printf("cnt : %d\n", bd->map->x_len);
 	bd->w = (bd->map->x_len - 1) * IMG_PXL;
@@ -59,4 +58,51 @@ void	read_map(t_board *bd)
 		bd->map->y += IMG_PXL;
 		bd->map->x = 0;
 	}
+}
+
+void	wololo(t_board *bd)
+{
+
+	char	**new_map;
+	int		x;
+	int		y;
+	int		i;
+
+	i = 0;
+	new_map = malloc(bd->h * sizeof(int *));
+	if (new_map)
+		return ;
+	y = 0;
+	while(y < bd->h)
+	{
+		x = 0;
+		new_map[y] = malloc(bd->w * sizeof(int));
+		if(!new_map[y])
+			return ;
+		while(x < bd->w)
+			new_map[y][x++] = bd->map->content[i++];
+		y++;
+	}
+	bd->map->map2d = new_map;
+	ft_printf("map 2d %s [%d][%d]\n", bd->map->map2d, x, y);
+
+	/*int	x;
+	int	y;
+	int	i;
+
+	y = 0;
+	x = 0;
+	i = 0;
+	bd->map->map2d = NULL;
+	while(bd->map->content)
+	{
+		while(bd->map->content[i] != '\n')
+		{
+			bd->map->map2d[x][y] = bd->map->content[i];
+			i++;
+			x++;
+			ft_printf("map 2d (i %d): [%d][%d] = map [%c]\n", i, x, y, bd->map->map2d[x][y]);
+		}
+		y++;
+	}*/
 }
