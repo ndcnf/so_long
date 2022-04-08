@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 23:32:34 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/09 00:09:48 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	key_on(int key, t_board *bd)
 		move(bd, KEY_DWN);
 	else if (key == KEY_D || key == KEY_RGT)
 		move(bd, KEY_RGT);
-	else
-		;
 	return (EXIT_SUCCESS);
 }
 
@@ -39,7 +37,10 @@ int	key_on(int key, t_board *bd)
 ********************************************/
 void	pathfinder(t_board *bd, char *path, int x, int y)
 {
-	bd->spr->img = mlx_xpm_file_to_image(bd->mlx, path, &bd->spr->w, &bd->spr->h);
+	char	*img;
+
+	img = mlx_xpm_file_to_image(bd->mlx, path, &bd->spr->w, &bd->spr->h);
+	bd->spr->img = img;
 	mlx_put_image_to_window(bd->mlx, bd->win, bd->spr->img, x, y);
 }
 
@@ -67,11 +68,7 @@ void	item_on_map(t_board *bd)
 		else if (c == 'P')
 		{
 			pathfinder(bd, IMG_P1, bd->map.x, bd->map.y);
-			bd->itm->p++;
-			bd->p1->x = bd->map.x;
-			bd->p1->y = bd->map.y;
-			bd->p1->cd_x = bd->p1->x/IMG_PXL;
-			bd->p1->cd_y = bd->p1->y/IMG_PXL;
+			define_player(bd);
 		}
 		else if (c == 'C')
 		{
@@ -115,9 +112,9 @@ void	check_file(t_board *bd, char **argv)
 	bd->map.content = ft_strdup("");
 	while (gnl != NULL)
 	{
-		if (bd->map.x_len && bd->map.x_len != ft_printf("%s", gnl))
+		if (bd->map.x_len && bd->map.x_len != (int)ft_strlen(gnl))
 			errorminator(ERR_SHP);
-		bd->map.x_len = ft_printf("%s", gnl);
+		bd->map.x_len = (int)ft_strlen(gnl);
 		tempura = bd->map.content;
 		bd->map.content = ft_strjoin(bd->map.content, gnl);
 		free(tempura);
@@ -127,5 +124,3 @@ void	check_file(t_board *bd, char **argv)
 	}
 	close(fd);
 }
-
-

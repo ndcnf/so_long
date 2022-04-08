@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:36:28 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 23:22:02 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/08 23:59:13 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ void	wololo(t_board *bd)
 	if (!new_map)
 		return ;
 	y = 0;
-	while(y < bd->map.y_len)
+	while (y < bd->map.y_len)
 	{
 		x = 0;
-		new_map[y] = malloc((bd->map.x_len-1) * sizeof(int));
-		if(!new_map[y])
+		new_map[y] = malloc((bd->map.x_len - 1) * sizeof(int));
+		if (!new_map[y])
 			return ;
-		while(x < (bd->map.x_len - 1))
+		while (x < (bd->map.x_len - 1))
 		{
 			new_map[y][x++] = bd->map.content[i];
 			i++;

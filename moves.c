@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 12:59:54 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 23:42:17 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/09 00:04:02 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	move(t_board *bd, int direction)
 	{
 		future_y = bd->p1->y - IMG_PXL;
 		future_x = bd->p1->x;
-		if(check_move(bd, future_x, future_y))
+		if (check_move(bd, future_x, future_y))
 		{
 			bd->map.y = bd->p1->y - IMG_PXL;
 			bd->p1->y = bd->map.y;
@@ -32,7 +32,7 @@ void	move(t_board *bd, int direction)
 	{
 		future_y = bd->p1->y + IMG_PXL;
 		future_x = bd->p1->x;
-		if(check_move(bd, future_x, future_y))
+		if (check_move(bd, future_x, future_y))
 		{
 			bd->map.y = bd->p1->y + IMG_PXL;
 			bd->p1->y = bd->map.y;
@@ -42,7 +42,7 @@ void	move(t_board *bd, int direction)
 	{
 		future_x = bd->p1->x - IMG_PXL;
 		future_y = bd->p1->y;
-		if(check_move(bd, future_x, future_y))
+		if (check_move(bd, future_x, future_y))
 		{
 			bd->map.x = bd->p1->x - IMG_PXL;
 			bd->p1->x = bd->map.x;
@@ -52,7 +52,7 @@ void	move(t_board *bd, int direction)
 	{
 		future_x = bd->p1->x + IMG_PXL;
 		future_y = bd->p1->y;
-		if(check_move(bd, future_x, future_y))
+		if (check_move(bd, future_x, future_y))
 		{
 			bd->map.x = bd->p1->x + IMG_PXL;
 			bd->p1->cd_x = bd->map.x / IMG_PXL;
@@ -68,27 +68,26 @@ int	check_move(t_board *bd, int move_x, int move_y)
 {
 	char	cd;
 
-	cd = bd->map.map2d[move_y/IMG_PXL][move_x/IMG_PXL];
-	if	(bd->itm->c != 0 && cd == 'E')
+	cd = bd->map.map2d[move_y / IMG_PXL][move_x / IMG_PXL];
+	if (bd->itm->c != 0 && cd == 'E')
 	{
 		return (0);
 	}
 	else if (cd != '1')
 	{
-		if(cd == 'C')
+		if (cd == 'C')
 			bd->itm->c--;
 		if (bd->itm->c == 0)
 			pathfinder(bd, IMG_E2, bd->itm->x_e, bd->itm->y_e);
 		if (bd->itm->c == 0 && cd == 'E')
 		{
-			
 			close_win();
 		}
-		bd->p1->cd_x = bd->p1->x/IMG_PXL;
-		bd->p1->cd_y = bd->p1->y/IMG_PXL;
-		ft_printf("steps: %d\n", ++bd->p1->steps);	
-		return(1);
+		bd->p1->cd_x = bd->p1->x / IMG_PXL;
+		bd->p1->cd_y = bd->p1->y / IMG_PXL;
+		ft_printf("steps: %d\n", ++bd->p1->steps);
+		return (1);
 	}
 	else
-		return(0);
+		return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
+#    By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 15:43:45 by nchennaf          #+#    #+#              #
-#    Updated: 2022/04/07 17:37:55 by nchennaf         ###   ########.fr        #
+#    Updated: 2022/04/08 23:56:45 by Nadia            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRC =	so_long.c \
 		init.c \
 		errors.c \
 		main.c \
-		moves.c
+		moves.c \
+		on_map.c
 DIR_FTPRINTF = ./ft_printf/
 LIB_FTPRINTF = ftprintf
 DIR_LIBFT = ./libft/

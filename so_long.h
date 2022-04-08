@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 23:39:54 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/08 23:57:30 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ typedef struct s_items
 	int	one;
 	int	zero;
 	int	c;
-	int x_e;
-	int y_e;
+	int	x_e;
+	int	y_e;
 }	t_items;
 
 typedef struct s_player
@@ -139,5 +139,6 @@ void	read_map(t_board *bd);
 void	move(t_board *bd, int direction);
 int		check_move(t_board *bd, int move_x, int move_y);
 void	wololo(t_board *bd);
+void	define_player(t_board *bd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 10:13:24 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 23:20:30 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/09 00:01:26 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ void	check_walls(t_board *bd)
 		real_cnt++;
 	i = -1;
 	while (bd->map.map2d[bd->map.y_len - 1][++i] == '1')
-		real_cnt++;	
+		real_cnt++;
 	i = -1;
 	while (bd->map.map2d[++i][0] == '1' && i < bd->map.y_len - 1)
 		real_cnt++;
 	i = -1;
-	while (bd->map.map2d[++i][bd->map.x_len - 2] == '1' && i < bd->map.y_len - 1)
+	while (bd->map.map2d[++i][bd->map.x_len - 2] == '1'
+		&& i < bd->map.y_len - 1)
 		real_cnt++;
 	if (wall_cnt != real_cnt)
 		errorminator(ERR_WLL);
