@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:36:28 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 15:22:20 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/08 19:22:15 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,33 @@ void	init_items(t_board *bd)
 	bd->p1->steps = 0;
 	bd->p1->x = 0;
 	bd->p1->y = 0;
-	ft_printf("steps origin: %d\n", bd->p1->steps);
 }
 
 void	init_map(t_board *bd)
 {
-	bd->h = bd->map->y_len * IMG_PXL;
-	ft_printf("cnt : %d\n", bd->map->x_len);
-	bd->w = (bd->map->x_len - 1) * IMG_PXL;
-	ft_printf("i : %d\n", bd->map->y_len);
+	bd->h = bd->map.y_len * IMG_PXL;
+	ft_printf("cnt : %d\n", bd->map.x_len);
+	bd->w = (bd->map.x_len - 1) * IMG_PXL;
+	ft_printf("i : %d\n", bd->map.y_len);
 	bd->mlx = mlx_init();
 
 	bd->win = mlx_new_window(bd->mlx, bd->w, bd->h, WIN_TITLE);
 
-	bd->map->x = 0;
-	bd->map->y = 0;
+	bd->map.x = 0;
+	bd->map.y = 0;
 }
 
 void	read_map(t_board *bd)
 {
-	while (bd->map->y <= bd->h)
+	while (bd->map.y <= bd->h)
 	{
-		while (bd->map->x <= bd->w)
+		while (bd->map.x <= bd->w)
 		{
 			item_on_map(bd);
-			bd->map->x += IMG_PXL;
+			bd->map.x += IMG_PXL;
 		}
-		bd->map->y += IMG_PXL;
-		bd->map->x = 0;
+		bd->map.y += IMG_PXL;
+		bd->map.x = 0;
 	}
 }
 
@@ -69,40 +68,26 @@ void	wololo(t_board *bd)
 	int		i;
 
 	i = 0;
-	new_map = malloc(bd->h * sizeof(int *));
-	if (new_map)
+	new_map = malloc(bd->map.y_len * sizeof(int *));
+	if (!new_map)
 		return ;
 	y = 0;
-	while(y < bd->h)
+	while(y < bd->map.y_len)
 	{
 		x = 0;
-		new_map[y] = malloc(bd->w * sizeof(int));
+		new_map[y] = malloc((bd->map.x_len-1) * sizeof(int));
 		if(!new_map[y])
 			return ;
-		while(x < bd->w)
-			new_map[y][x++] = bd->map->content[i++];
+		while(x < (bd->map.x_len - 1))
+		{
+			new_map[y][x++] = bd->map.content[i];
+			ft_printf("%c", bd->map.content[i]);
+			i++;
+		}
+		ft_printf("\n");
+		i++;
 		y++;
 	}
-	bd->map->map2d = new_map;
-	ft_printf("map 2d %s [%d][%d]\n", bd->map->map2d, x, y);
-
-	/*int	x;
-	int	y;
-	int	i;
-
-	y = 0;
-	x = 0;
-	i = 0;
-	bd->map->map2d = NULL;
-	while(bd->map->content)
-	{
-		while(bd->map->content[i] != '\n')
-		{
-			bd->map->map2d[x][y] = bd->map->content[i];
-			i++;
-			x++;
-			ft_printf("map 2d (i %d): [%d][%d] = map [%c]\n", i, x, y, bd->map->map2d[x][y]);
-		}
-		y++;
-	}*/
+	bd->map.map2d = new_map;
+	//ft_printf("map 2d %c [%d][%d]\n", bd->map.map2d[bd->p1->cd_y][bd->p1->cd_x], bd->p1->cd_x, bd->p1->cd_y);
 }

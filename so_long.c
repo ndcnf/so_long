@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:43:53 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/07 17:49:51 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/08 19:19:27 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,37 +49,39 @@ void	item_on_map(t_board *bd)
 	static size_t	i = -1;
 	char			c;
 
-	if (!bd->map->content)
+	if (!bd->map.content)
 		return ;
-	if (++i < ft_strlen(bd->map->content))
+	if (++i < ft_strlen(bd->map.content))
 	{
-		c = ft_toupper(bd->map->content[i]);
-		pathfinder(bd, IMG_GRD1, bd->map->x, bd->map->y);
+		c = ft_toupper(bd->map.content[i]);
+		pathfinder(bd, IMG_GRD1, bd->map.x, bd->map.y);
 		if (c == '1')
 		{
-			pathfinder(bd, IMG_WLL2, bd->map->x, bd->map->y);
+			pathfinder(bd, IMG_WLL2, bd->map.x, bd->map.y);
 			bd->itm->one++;
 		}
 		else if (c == '0')
 		{
-			pathfinder(bd, IMG_GRD1, bd->map->x, bd->map->y);
+			pathfinder(bd, IMG_GRD1, bd->map.x, bd->map.y);
 			bd->itm->zero++;
 		}
 		else if (c == 'P')
 		{
-			pathfinder(bd, IMG_P1, bd->map->x, bd->map->y);
+			pathfinder(bd, IMG_P1, bd->map.x, bd->map.y);
 			bd->itm->p++;
-			bd->p1->x = bd->map->x;
-			bd->p1->y = bd->map->y;
+			bd->p1->x = bd->map.x;
+			bd->p1->y = bd->map.y;
+			bd->p1->cd_x = bd->p1->x/IMG_PXL;
+			bd->p1->cd_y = bd->p1->y/IMG_PXL;
 		}
 		else if (c == 'C')
 		{
-			pathfinder(bd, IMG_C, bd->map->x, bd->map->y);
+			pathfinder(bd, IMG_C, bd->map.x, bd->map.y);
 			bd->itm->c++;
 		}
 		else if (c == 'E')
 		{
-			pathfinder(bd, IMG_E1, bd->map->x, bd->map->y);
+			pathfinder(bd, IMG_E1, bd->map.x, bd->map.y);
 			bd->itm->e++;
 		}
 		else if (c == '\n')
@@ -106,24 +108,24 @@ void	check_file(t_board *bd, char **argv)
 		errorminator(ERR_FILE);
 	if (!ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])))
 		errorminator(ERR_FILE);
-	bd->map->y_len = 0;
-	bd->map->x_len = 0;
+	bd->map.y_len = 0;
+	bd->map.x_len = 0;
 	gnl = get_next_line(fd);
-	bd->map->content = ft_strdup("");
+	bd->map.content = ft_strdup("");
 	while (gnl != NULL)
 	{
-		if (bd->map->x_len && bd->map->x_len != ft_printf("%s", gnl))
+		if (bd->map.x_len && bd->map.x_len != ft_printf("%s", gnl))
 			errorminator(ERR_SHP);
-		bd->map->x_len = ft_printf("%s", gnl);
-		tempura = bd->map->content;
-		bd->map->content = ft_strjoin(bd->map->content, gnl);
+		bd->map.x_len = ft_printf("%s", gnl);
+		tempura = bd->map.content;
+		bd->map.content = ft_strjoin(bd->map.content, gnl);
 		free(tempura);
 		free(gnl);
 		gnl = get_next_line(fd);
-		bd->map->y_len++;
+		bd->map.y_len++;
 	}
 	close(fd);
-	ft_printf("map.content :\n\n%s\n", bd->map->content);
+	ft_printf("map.content :\n\n%s\n", bd->map.content);
 }
 
 

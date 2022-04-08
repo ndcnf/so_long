@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 15:03:53 by nchennaf         ###   ########.fr       */
+/*   Updated: 2022/04/08 19:39:12 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct s_player
 ********************************************/
 typedef struct s_board
 {
-	t_map		*map;
+	t_map		map;
 	t_sprite	*spr;
 	t_items		*itm;
 	t_player	*p1;
@@ -133,7 +133,7 @@ void	init_map(t_board *bd);
 void	check_walls(t_board *bd);
 void	read_map(t_board *bd);
 void	move(t_board *bd, int direction);
-int		check_move(t_board *bd, int move);
+int		check_move(t_board *bd, int move_x, int move_y);
 void	wololo(t_board *bd);
 
 #endif
