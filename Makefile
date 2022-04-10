@@ -6,9 +6,11 @@
 #    By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 15:43:45 by nchennaf          #+#    #+#              #
-#    Updated: 2022/04/08 23:56:45 by Nadia            ###   ########.fr        #
+#    Updated: 2022/04/10 12:14:30 by Nadia            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+#CHANGER HEADER !!!
 
 CC =	CC
 FLAGS =	-Wall -Wextra -Werror -g -fsanitize=address
@@ -19,7 +21,8 @@ SRC =	so_long.c \
 		errors.c \
 		main.c \
 		moves.c \
-		on_map.c
+		on_map.c \
+		directions.c
 DIR_FTPRINTF = ./ft_printf/
 LIB_FTPRINTF = ftprintf
 DIR_LIBFT = ./libft/

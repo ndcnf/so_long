@@ -6,9 +6,11 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:36:28 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 23:59:13 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/10 11:50:39 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//CHANGER HEADER!!!
 
 #include "so_long.h"
 
@@ -41,7 +43,30 @@ void	init_map(t_board *bd)
 	bd->map.y = 0;
 }
 
-void	read_map(t_board *bd)
+void	process_map(t_board *bd, int fd)
+{
+	char	*tempura;
+	char	*gnl;
+
+	bd->map.y_len = 0;
+	bd->map.x_len = 0;
+	gnl = get_next_line(fd);
+	bd->map.content = ft_strdup("");
+	while (gnl != NULL)
+	{
+		if (bd->map.x_len && bd->map.x_len != (int)ft_strlen(gnl))
+			errorminator(ERR_SHP);
+		bd->map.x_len = (int)ft_strlen(gnl);
+		tempura = bd->map.content;
+		bd->map.content = ft_strjoin(bd->map.content, gnl);
+		free(tempura);
+		free(gnl);
+		gnl = get_next_line(fd);
+		bd->map.y_len++;
+	}
+}
+
+void	render_map(t_board *bd)
 {
 	while (bd->map.y <= bd->h)
 	{
@@ -53,33 +78,4 @@ void	read_map(t_board *bd)
 		bd->map.y += IMG_PXL;
 		bd->map.x = 0;
 	}
-}
-
-void	wololo(t_board *bd)
-{
-	char	**new_map;
-	int		x;
-	int		y;
-	int		i;
-
-	i = 0;
-	new_map = malloc(bd->map.y_len * sizeof(int *));
-	if (!new_map)
-		return ;
-	y = 0;
-	while (y < bd->map.y_len)
-	{
-		x = 0;
-		new_map[y] = malloc((bd->map.x_len - 1) * sizeof(int));
-		if (!new_map[y])
-			return ;
-		while (x < (bd->map.x_len - 1))
-		{
-			new_map[y][x++] = bd->map.content[i];
-			i++;
-		}
-		i++;
-		y++;
-	}
-	bd->map.map2d = new_map;
 }

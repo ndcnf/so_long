@@ -6,9 +6,11 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/08 23:57:30 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/10 12:00:26 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//CHANGER HEADER !!!
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -135,10 +137,19 @@ void	errorminator(char *s);
 void	init_items(t_board *bd);
 void	init_map(t_board *bd);
 void	check_walls(t_board *bd);
-void	read_map(t_board *bd);
+void	process_map(t_board *bd, int fd);
+void	render_map(t_board *bd);
 void	move(t_board *bd, int direction);
 int		check_move(t_board *bd, int move_x, int move_y);
 void	wololo(t_board *bd);
 void	define_player(t_board *bd);
+void	define_walls(t_board *bd);
+void	hello_ground(t_board *bd);
+void	define_collectibles(t_board *bd);
+void	define_exit(t_board *bd);
+void	go_left(t_board *bd, int future_x, int future_y);
+void	go_right(t_board *bd, int future_x, int future_y);
+void	go_up(t_board *bd, int future_x, int future_y);
+void	go_down(t_board *bd, int future_x, int future_y);
 
 #endif

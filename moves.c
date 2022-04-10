@@ -6,9 +6,11 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 12:59:54 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/09 00:04:02 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/10 12:12:52 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//CHANGER HEADER !!!
 
 #include	"so_long.h"
 
@@ -17,48 +19,17 @@ void	move(t_board *bd, int direction)
 	int	future_x;
 	int	future_y;
 
+	future_x = 0;
+	future_y = 0;
 	pathfinder(bd, IMG_GRD2, bd->p1->x, bd->p1->y);
 	if (direction == KEY_UP)
-	{
-		future_y = bd->p1->y - IMG_PXL;
-		future_x = bd->p1->x;
-		if (check_move(bd, future_x, future_y))
-		{
-			bd->map.y = bd->p1->y - IMG_PXL;
-			bd->p1->y = bd->map.y;
-		}
-	}
+		go_up(bd, future_x, future_y);
 	else if (direction == KEY_DWN)
-	{
-		future_y = bd->p1->y + IMG_PXL;
-		future_x = bd->p1->x;
-		if (check_move(bd, future_x, future_y))
-		{
-			bd->map.y = bd->p1->y + IMG_PXL;
-			bd->p1->y = bd->map.y;
-		}
-	}
+		go_down(bd, future_x, future_y);
 	else if (direction == KEY_LFT)
-	{
-		future_x = bd->p1->x - IMG_PXL;
-		future_y = bd->p1->y;
-		if (check_move(bd, future_x, future_y))
-		{
-			bd->map.x = bd->p1->x - IMG_PXL;
-			bd->p1->x = bd->map.x;
-		}
-	}
+		go_left(bd, future_x, future_y);
 	else if (direction == KEY_RGT)
-	{
-		future_x = bd->p1->x + IMG_PXL;
-		future_y = bd->p1->y;
-		if (check_move(bd, future_x, future_y))
-		{
-			bd->map.x = bd->p1->x + IMG_PXL;
-			bd->p1->cd_x = bd->map.x / IMG_PXL;
-			bd->p1->x = bd->map.x;
-		}
-	}
+		go_right(bd, future_x, future_y);
 	else
 		errorminator(ERR_WTF);
 	pathfinder(bd, IMG_P1, bd->p1->x, bd->p1->y);
@@ -90,4 +61,33 @@ int	check_move(t_board *bd, int move_x, int move_y)
 	}
 	else
 		return (0);
+}
+
+void	wololo(t_board *bd)
+{
+	char	**conv_map;
+	int		x;
+	int		y;
+	int		i;
+
+	i = 0;
+	conv_map = malloc(bd->map.y_len * sizeof(int *));
+	if (!conv_map)
+		return ;
+	y = 0;
+	while (y < bd->map.y_len)
+	{
+		x = 0;
+		conv_map[y] = malloc((bd->map.x_len - 1) * sizeof(int));
+		if (!conv_map[y])
+			return ;
+		while (x < (bd->map.x_len - 1))
+		{
+			conv_map[y][x++] = bd->map.content[i];
+			i++;
+		}
+		i++;
+		y++;
+	}
+	bd->map.map2d = conv_map;
 }
