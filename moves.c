@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 12:59:54 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 12:12:52 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/10 12:56:21 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	move(t_board *bd, int direction)
 		go_right(bd, future_x, future_y);
 	else
 		errorminator(ERR_WTF);
-	pathfinder(bd, IMG_P1, bd->p1->x, bd->p1->y);
 }
 
 int	check_move(t_board *bd, int move_x, int move_y)
@@ -51,9 +50,7 @@ int	check_move(t_board *bd, int move_x, int move_y)
 		if (bd->itm->c == 0)
 			pathfinder(bd, IMG_E2, bd->itm->x_e, bd->itm->y_e);
 		if (bd->itm->c == 0 && cd == 'E')
-		{
 			close_win();
-		}
 		bd->p1->cd_x = bd->p1->x / IMG_PXL;
 		bd->p1->cd_y = bd->p1->y / IMG_PXL;
 		ft_printf("steps: %d\n", ++bd->p1->steps);

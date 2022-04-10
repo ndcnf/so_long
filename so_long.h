@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 12:00:26 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/10 12:51:38 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@
 # define KEY_ESC 53
 # define X_BTN 17
 
-# define WIN_TITLE "The Untold Legend of Diana And the Evil Shrubs"
+# define WIN_TITLE "The Untold Legend of Diana"
 # define WIN_H 512
 # define WIN_W 512
 # define IMG_PXL 32
 
-# define IMG_P2 "./sprites/blob01.xpm" //pas le bon format, attention !
-# define IMG_P1 "./sprites/jumino.xpm"
+# define IMG_P1 "./sprites/diana_f.xpm"
+# define IMG_P2 "./sprites/diana_b.xpm"
+# define IMG_P3 "./sprites/diana_l.xpm"
+# define IMG_P4 "./sprites/diana_r.xpm"
 # define IMG_E1 "./sprites/heart_locked.xpm"
 # define IMG_E2 "./sprites/heart_unlocked.xpm"
 # define IMG_C "./sprites/fruit00.xpm"
@@ -59,7 +61,7 @@
 # define ERR_GRD "La carte doit comporter au moins un sol\n"
 # define ERR_WTF "Cette erreur ne devrait meme pas exister\n"
 
-# define BYE "So long!\n(and thanks for all the fish!)\n"
+# define BYE "So long!\nand thanks for all the apples!\n"
 
 /********************************************
 |	Manages the current coordinates			|
