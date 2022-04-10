@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 12:59:54 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 14:36:57 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/10 15:51:17 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	move(t_board *bd, int direction)
 		go_right(bd, future_x, future_y);
 	else
 		errorminator(ERR_WTF);
-	pathfinder(bd, IMG_WLL2, 0, 0);
-	mlx_string_put(bd->mlx, bd->win, 6, 20, 0x0, ft_itoa(bd->p1->steps));
+	pathfinder(bd, IMG_BOX, 0, 0);
+	mlx_string_put(bd->mlx, bd->win, 6, 25, 0x0, ft_itoa(bd->p1->steps));
 }
 
 int	check_move(t_board *bd, int move_x, int move_y)
 {
 	char	cd;
 
-	cd = bd->map.map2d[move_y / IMG_PXL][move_x / IMG_PXL];
+	cd = ft_toupper(bd->map.map2d[move_y / IMG_PXL][move_x / IMG_PXL]);
 	if (bd->itm->c != 0 && cd == 'E')
 	{
 		return (0);
@@ -48,7 +48,10 @@ int	check_move(t_board *bd, int move_x, int move_y)
 	else if (cd != '1')
 	{
 		if (cd == 'C')
+		{
 			bd->itm->c--;
+			bd->map.map2d[move_y / IMG_PXL][move_x / IMG_PXL] = '0';
+		}
 		if (bd->itm->c == 0)
 			pathfinder(bd, IMG_E2, bd->itm->x_e, bd->itm->y_e);
 		if (bd->itm->c == 0 && cd == 'E')

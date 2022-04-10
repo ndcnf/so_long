@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 14:39:34 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/10 15:49:56 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define IMG_WLL2 "./sprites/shrub01.xpm"
 # define IMG_GRD1 "./sprites/ground00.xpm"
 # define IMG_GRD2 "./sprites/ground01.xpm"
+# define IMG_BOX "./sprites/steps.xpm"
 
 # define ERROR "Error\n"
 # define ERR_ARG "Nombre d'arguments invalide\n"
