@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 12:59:54 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 12:56:21 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/10 14:36:57 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	move(t_board *bd, int direction)
 		go_right(bd, future_x, future_y);
 	else
 		errorminator(ERR_WTF);
+	pathfinder(bd, IMG_WLL2, 0, 0);
+	mlx_string_put(bd->mlx, bd->win, 6, 20, 0x0, ft_itoa(bd->p1->steps));
 }
 
 int	check_move(t_board *bd, int move_x, int move_y)

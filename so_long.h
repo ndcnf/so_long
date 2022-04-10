@@ -6,7 +6,7 @@
 /*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 12:51:38 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/10 14:39:34 by Nadia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@
 # define ERR_GRD "La carte doit comporter au moins un sol\n"
 # define ERR_WTF "Cette erreur ne devrait meme pas exister\n"
 
+# define HELLO "Diana needs your help to move\n"
+# define STP "Steps: \n"
 # define BYE "So long!\nand thanks for all the apples!\n"
 
 /********************************************
