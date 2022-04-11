@@ -3,17 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+         #
+#    By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/15 15:43:45 by nchennaf          #+#    #+#              #
-#    Updated: 2022/04/10 12:14:30 by Nadia            ###   ########.fr        #
+#    Updated: 2022/04/11 11:13:48 by nchennaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#CHANGER HEADER !!!
-
 CC =	CC
-FLAGS =	-Wall -Wextra -Werror -g -fsanitize=address
+FLAGS =	-Wall -Wextra -Werror #-g -fsanitize=address
 NAME =	so_long
 AR =	ar rcs
 SRC =	so_long.c \

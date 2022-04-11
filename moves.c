@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 12:59:54 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 15:51:17 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/11 10:55:44 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//CHANGER HEADER !!!
 
 #include	"so_long.h"
 

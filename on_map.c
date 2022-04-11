@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   on_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 23:53:17 by Nadia             #+#    #+#             */
-/*   Updated: 2022/04/10 15:17:40 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/11 10:55:53 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-//CHANGER LE HEADER !!!!!
 
 void	define_player(t_board *bd)
 {

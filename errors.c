@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 10:13:24 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 11:18:24 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/11 10:55:01 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// CHANGER HEADER !!!
 
 #include	"so_long.h"
 

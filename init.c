@@ -3,22 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 16:36:28 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 11:50:39 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:12:26 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//CHANGER HEADER!!!
 
 #include "so_long.h"
 
 void	allowance(t_board *bd)
 {
 	bd->itm = malloc(sizeof(t_items));
+	if (!bd->itm)
+		errorminator(RKO);
 	bd->p1 = malloc(sizeof(t_player));
+	if (!bd->p1)
+		errorminator(RKO);
 	bd->spr = malloc(sizeof(t_sprite));
+	if (!bd->spr)
+		errorminator(RKO);
 }
 
 void	init_items(t_board *bd)

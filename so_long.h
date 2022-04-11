@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nadia <Nadia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nchennaf <nchennaf@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 11:57:20 by nchennaf          #+#    #+#             */
-/*   Updated: 2022/04/10 15:49:56 by Nadia            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:08:18 by nchennaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//CHANGER HEADER !!!
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -60,6 +58,7 @@
 # define ERR_EXIT "La carte doit comporter une sortie obligatoirement\n"
 # define ERR_WLL "La carte doit etre entouree de murs\n"
 # define ERR_GRD "La carte doit comporter au moins un sol\n"
+# define RKO "Impossible d'allouer de la memoire\n"
 # define ERR_WTF "Cette erreur ne devrait meme pas exister\n"
 
 # define HELLO "Diana needs your help to move\n"
