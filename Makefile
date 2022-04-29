@@ -35,6 +35,7 @@ all:	${NAME}
 %.o:	%.c
 		${CC} ${FLAGS} -Imlx -c $< -o $@
 ${NAME}:	${OBJ}
+		${MAKE} -C ./mlx
 		${MAKE} -C ${DIR_FTPRINTF}
 		${MAKE} -C ${DIR_LIBFT}
 		${MAKE} -C ${DIR_GNL}
@@ -50,6 +51,7 @@ norm:	all
 		norminette ${SRC} so_long.h
 clean:
 			rm -rf ${OBJ}
+			${MAKE} -C ./mlx
 			${MAKE} -C ${DIR_LIBFT} clean
 			${MAKE} -C ${DIR_FTPRINTF} clean
 			${MAKE} -C ${DIR_GNL} clean
