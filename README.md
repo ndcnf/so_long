@@ -1,3 +1,5 @@
+<img width="50%" alt="Example of an output" src="https://user-images.githubusercontent.com/84449287/230330980-6bb40204-50eb-4034-8f1f-2d151b3a1071.png">
+
 ![In a nutshell][nutshell]</br>
 To create a small 2D game.</br>
 [My documentation](https://nadc.notion.site/So-Long-fa53e104ea2c4aadae0b2b2cf9e6c524)
@@ -23,7 +25,10 @@ To run:</br>
 
 Here is an example with `./so_long maps/map02.ber` as arguments:
 
-<img width="50%" alt="Example of an output" src="https://user-images.githubusercontent.com/84449287/230330980-6bb40204-50eb-4034-8f1f-2d151b3a1071.png">
+![so_long03](https://user-images.githubusercontent.com/84449287/230398999-9de777d9-eb88-4b55-b933-6061852d8dbc.gif)
+
+
+
 
 [nutshell]: https://img.shields.io/badge/-In%20a%20nutshell-blue?style=for-the-badge "In a nutshell"
 [restrictions]: https://img.shields.io/badge/-Restrictions-blue?style=for-the-badge "Restrictions"
