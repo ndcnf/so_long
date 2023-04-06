@@ -22,8 +22,8 @@ To compile:</br>
 To run:</br>
 ``./so_long maps/<select a map>``</br>
 
-To play:
-Moves: `W` `A` `S` `D` or directional arrows
+To play:</br>
+Moves: `W` `A` `S` `D` or directional arrows</br>
 Quit: `ESC` or close window
 
 <img width="50%" alt="Screen Shot 2023-04-06 at 11 14 15 AM" src="https://user-images.githubusercontent.com/84449287/230331851-31bed31e-546d-447a-92bc-36db898e484a.png">
