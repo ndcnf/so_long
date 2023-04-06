@@ -30,14 +30,9 @@ Quit: `ESC` or close window
 
 Here is an example with `./so_long maps/map02.ber` as arguments:
 
-<img width="40%" alt="Gameplay" src="https://user-images.githubusercontent.com/84449287/230403369-a2c9d3fd-b825-4396-9c7e-165fc4561f18.gif">
+<img width="50%" alt="Gameplay" src="https://user-images.githubusercontent.com/84449287/230432662-07bb6cd0-1aa2-49a8-9bd7-faeda6fb0c3a.gif">
 
 [nutshell]: https://img.shields.io/badge/-In%20a%20nutshell-blue?style=for-the-badge "In a nutshell"
 [restrictions]: https://img.shields.io/badge/-Restrictions-blue?style=for-the-badge "Restrictions"
 [purposes]: https://img.shields.io/badge/-Purposes-blue?style=for-the-badge "Purposes"
 [howto]: https://img.shields.io/badge/-How%20to%20use%20it-blue?style=for-the-badge "How to use it?"
-
-
-
-
-
